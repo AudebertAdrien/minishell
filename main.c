@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/06/30 17:22:13 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:06:57 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int ac, char **av)
 	pid_t	father;
 	pid_t	wait();
 	char	*t = getenv("VTE_VERSION");
+
+	av[1] = "-la";
 	printf("%s\n", t);	
 	while (1)
 	{
@@ -32,6 +34,7 @@ int	main(int ac, char **av)
 		}
 		s = readline("");
 		father = fork();
+		printf("=> %d\n", father);
 		if (s)
 		{
 			if (father > 0)
@@ -42,7 +45,12 @@ int	main(int ac, char **av)
 			if (father == 0)
 			{
 				if (!strcmp(s, "ls"))
+				{
 					execve("/bin/ls", av, NULL);
+					//pipe(1);
+					//execve("/bin/grep", z, NULL);
+
+				}
 				if (!strcmp(s, "pwd"))
 					execve("/bin/pwd", av, NULL);
 			}
