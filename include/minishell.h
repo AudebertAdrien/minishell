@@ -6,23 +6,27 @@
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/03 16:00:09 by mcreus & aa      ###   ########.fr       */
+/*   Updated: 2023/07/03 16:18:47 by mcreus & aa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
 # include <stdio.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <sys/wait.h>
 # include <signal.h>
-# include <fcntl.h>
+
+# include "libft.h"
+# include "ft_printf.h"
 
 typedef struct s_env
 {
 	char	**env;
-	
-};
+}	t_env;
+
+int		echo();
+
+#endif
