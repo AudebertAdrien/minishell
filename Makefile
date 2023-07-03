@@ -11,7 +11,7 @@ INC			= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 
 PRINTF		= -Lprintf -lftprintf
 
-OBJ			= $(addprefix obj/, $(SRCS:.c=.o) $(UTILS:.c=.o))
+OBJ			= $(addprefix obj/, $(SRCS:.c=.o))
 
 obj/%.o: src/%.c 
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
