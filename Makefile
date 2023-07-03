@@ -1,12 +1,11 @@
 MAIN		= minishell
 
-CC			= gcc -g
+CC			= gcc -g 
 CFLAGS		= -Wall -Wextra
 
 VPATH		= src
 
 SRCS		= main.c \
-			  echo.c
 
 INC			= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 
@@ -30,7 +29,7 @@ create_libs:
 
 $(MAIN): $(OBJ)
 	@echo ✅ "Compile minishell\n"
-	@$(CC) $^ -o $@ $(INC) $(LIBFT) $(PRINTF)
+	@$(CC) $^ -o $@ -lreadline $(INC) $(LIBFT) $(PRINTF)
 
 clean_libs:
 	@echo ✅ "Clean libft\n"
