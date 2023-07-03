@@ -7,6 +7,8 @@ VPATH		= src
 
 SRCS		= main.c \
 			  echo.c \
+			  parse_readline.c \
+			  find_cmd.c \
 
 INC			= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 

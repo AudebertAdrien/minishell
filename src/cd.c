@@ -1,43 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/03 17:52:30 by mcreus & aa      ###   ########.fr       */
+/*   Created: 2023/07/03 17:53:58 by mcreus & aa       #+#    #+#             */
+/*   Updated: 2023/07/03 18:08:16 by mcreus & aa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+char	cd(t_var *pwd)
 {
-	pid_t	process;
-	pid_t	wait();
-
-	(void)ac;
-	(void)av;
-	(void)env;
-	while (1)
-	{
-		static char	*str = (char *)NULL; 
-		if (str)
-		{
-			free(str);
-			str = (char *)NULL;
-		}
-		str = readline("");
-		add_history(str);
-		process = fork();
-		if (str)
-		{
-			if (process > 0)
-				wait();
-			if (process == 0)
-				parse_readline(str);
-		}
-	}
-	return (0);
+	t_var	*
 }

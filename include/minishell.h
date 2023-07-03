@@ -6,7 +6,7 @@
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/03 16:18:47 by mcreus & aa      ###   ########.fr       */
+/*   Updated: 2023/07/03 18:11:17 by mcreus & aa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,21 @@
 # include "libft.h"
 # include "ft_printf.h"
 
-typedef struct s_env
+typedef struct s_var
 {
 	char	**env;
-}	t_env;
+	char	*pwd;
+}	t_var;
+
+typedef struct s_path
+{
+	char	*path;
+	char	*old_path;
+	char	*new_path;
+}	t_path;
 
 int		echo();
+int		parse_readline(char *str);
+int		find_cmd(char **tab);
 
 #endif
