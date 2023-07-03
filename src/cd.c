@@ -6,13 +6,13 @@
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:53:58 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/03 18:08:16 by mcreus & aa      ###   ########.fr       */
+/*   Updated: 2023/07/03 18:15:38 by mcreus & aa      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	cd(t_var *pwd)
+char	cd(t_path *pwd, t_var *str)
 {
-	t_var	*
+	
 }
