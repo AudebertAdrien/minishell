@@ -6,21 +6,17 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/03 13:57:14 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:04:22 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "minishell.h"
 
 int	main(int ac, char **av)
 {
 	pid_t	process;
 	pid_t	wait();
-	char	*t = getenv("USER");
+	char	*t = getenv("PWD");
 
 	av[2] = "-la";
 	printf("%s\n", t);	
@@ -46,6 +42,11 @@ int	main(int ac, char **av)
 					execve("/bin/ls", av, NULL);
 				if (!strcmp(s, "pwd"))
 					execve("/bin/pwd", av, NULL);
+				if (!strcmp(s, "unset"))
+				{
+					ft_printf("unset!\n");
+					execve("/bin/unset PWD", av, NULL);
+				}
 			
 			}
 		}
