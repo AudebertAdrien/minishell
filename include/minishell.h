@@ -6,7 +6,7 @@
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/03 15:12:14 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:50:12 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct s_env
 {
 	char	**env;
 }	t_env;
+
+int		echo();
 
 #endif

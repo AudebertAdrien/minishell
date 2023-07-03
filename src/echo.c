@@ -6,8 +6,14 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/03 15:10:14 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:50:53 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
+int	echo(void)
+{
+	ft_printf("test\n");	
+	return (0);
+}

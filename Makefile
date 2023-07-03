@@ -6,6 +6,7 @@ CFLAGS		= -Wall -Wextra
 VPATH		= src
 
 SRCS		= main.c \
+			  echo.c \
 
 INC			= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 
