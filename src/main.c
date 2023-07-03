@@ -6,7 +6,7 @@
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/03 15:49:56 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:48:31 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,27 @@ int	main(int ac, char **av, char **env)
 {
 	pid_t	process;
 	pid_t	wait();
-	char	*t = getenv("PWD");
 
-	printf("%s\n", t);	
+	(void)ac;
+	(void)av;
+	(void)env;
 	while (1)
 	{
-		static char	*s = (char *)NULL; 
-		if (s)
+		static char	*str = (char *)NULL; 
+		if (str)
 		{
-			free(s);
-			s = (char *)NULL;
+			free(str);
+			str = (char *)NULL;
 		}
-		s = readline("");
-		add_history(s);
+		str = readline("");
+		add_history(str);
 		process = fork();
-		printf("=> %d\n", process);
-		if (s)
+		if (str)
 		{
 			if (process > 0)
 				wait();
 			if (process == 0)
-			{
-				if (!strcmp(s, "ls"))
-					execve("/bin/ls", av, NULL);
-				if (!strcmp(s, "pwd"))
-					execve("/bin/pwd", av, NULL);
-				if (!strcmp(s, "echo"))
-					echo();
-			}
+				parse_readline(str);
 		}
 	}
 	return (0);

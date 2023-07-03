@@ -6,7 +6,7 @@
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/03 15:50:12 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:47:15 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ typedef struct s_env
 }	t_env;
 
 int		echo();
+int		parse_readline(char *str);
+int		find_cmd(char **tab);
 
 #endif
