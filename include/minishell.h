@@ -6,7 +6,7 @@
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/03 18:51:31 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:41:06 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ typedef struct s_path
 	char	*new_path;
 }	t_path;
 
-int		echo(char **tab);
+char	*display_prompt(char **env);
 int		parse_readline(char *str);
 int		find_cmd(char **tab);
+int		echo(char **tab);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/03 18:51:15 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:06:50 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int ac, char **av, char **env)
 			free(str);
 			str = (char *)NULL;
 		}
+		display_prompt(env);
 		str = readline("");
 		add_history(str);
 		process = fork();
@@ -36,10 +37,13 @@ int	main(int ac, char **av, char **env)
 			if (process > 0)
 				wait();
 			if (process == 0)
+			/*
 			if (!strcmp(str, "pwd"))
 				execve("/bin/pwd", av, NULL);
-	
-			//	parse_readline(str);
+			if (!strcmp(str, "ls"))
+				execve("/bin/ls", av, NULL);
+			*/
+			parse_readline(str);
 		}
 	}
 	return (0);
