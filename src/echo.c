@@ -6,14 +6,24 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/03 15:50:53 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:13:07 by aaudeber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	echo(void)
+int	echo(char **tab)
 {
-	ft_printf("test\n");	
+	ft_printf("ECHO\n");	
+	int	i;
+
+	i = 1;
+	while (tab[i])
+	{
+		ft_putstr_fd(tab[i], 1);
+		ft_putchar_fd('\n', 1);
+		rl_on_new_line();
+		i++;
+	}
 	return (0);
 }
