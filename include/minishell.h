@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/06 13:37:56 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/06 14:28:36 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 typedef struct s_var
 {
 	char	**env;
-	char 	*pwd
+	char 	*pwd;
 	int		exit;
 	char	*str;
 	t_path	*path;
