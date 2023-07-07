@@ -6,24 +6,26 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:07:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/07 13:40:26 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/07 14:59:10 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*parse_env(char **env, char *needle, int len)
+char	*ft_get_env(char **env, char *needle)
 {
 	char	*haystack;
 	int		i;
 	int		j;
+	int		len;
 
 	i = 0;
+	len = ft_strlen(needle);
 	while (env[i])
 	{
 		haystack = env[i];
 		j = 0;
-		while (needle[j] && haystack[j] == needle[j] && j < len)
+		while (needle[j] && (haystack[j] == needle[j]) && j < len)
 			j++;
 		if (needle[j] == '\0')
 			return (env[i]);
@@ -32,21 +34,19 @@ char	*parse_env(char **env, char *needle, int len)
 	return (NULL);
 }
 
-char	*grep_workstation(char *line)
+char	*ft_get_path(char *pwd_line, char *user_line)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	j = 0;
-	while (line[i])
+	while (pwd_line[i])
 	{
-		if (line[i] == '/')
-		{
-			while (line[i + j] != '.')
-				j++;
-			return (ft_substr(line, i+1, j - 1));
-		}
+		j = 0;
+		while (user_line[j] && (pwd_line[i + j] == user_line[j]))
+			j++;
+		if (user_line[j] == '\0')
+			return (&pwd_line[i + j]);
 		i++;
 	}
 	return (NULL);
@@ -70,9 +70,9 @@ char	*display_prompt(char **env)
 	char	*tilde;
 
 	tilde = "";
-	user_line = getenv("USER");
-	session_line = parse_env(env, "SESSION_MANAGER", 15);
+	session_line = ft_get_env(env, "SESSION_MANAGER");
 	pwd_line = getenv("PWD");
+	user_line = getenv("USER");
 
 	cluster_line = grep_workstation(session_line);
 	//relative_path_line = get_relative_path(pwd_line);
