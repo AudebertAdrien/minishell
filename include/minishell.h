@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
+/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/03 20:41:06 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:18:06 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@
 typedef struct s_var
 {
 	char	**env;
-	char	*pwd;
+	char 	*pwd;
+	int		exit;
+	char	*str;
 }	t_var;
 
 typedef struct s_path
@@ -37,9 +39,20 @@ typedef struct s_path
 	char	*new_path;
 }	t_path;
 
+typedef struct s_char
+{
+	char	*ptr;
+	char	type;
+	struct s_char	*next;
+	struct s_char	*previous;
+}	t_char;
+
+
+
 char	*display_prompt(char **env);
 int		parse_readline(char *str);
 int		find_cmd(char **tab);
 int		echo(char **tab);
+int		ft_cd(char **args, char **env);
 
 #endif

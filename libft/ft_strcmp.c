@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_readline.c                                   :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
+/*   By: mcreus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/07 10:14:40 by mcreus           ###   ########.fr       */
+/*   Created: 2023/05/09 13:48:02 by mcreus            #+#    #+#             */
+/*   Updated: 2023/05/09 13:48:38 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	parse_readline(char *str)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_char	*lst;
-	char	**tab;
-	int		i;
-
-	i = 0;
-	tab = ft_split(str, ' ');
-	find_cmd(tab);
-	return (0);
+	while (*s1 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
