@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcreus & aaudeber <mcreus@student.42per    +#+  +:+       +#+        */
+/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/03 20:06:50 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:07:16 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **av, char **env)
 			free(str);
 			str = (char *)NULL;
 		}
-		display_prompt(env);
+		//display_prompt(env);
 		str = readline("");
 		add_history(str);
 		process = fork();
@@ -43,7 +43,7 @@ int	main(int ac, char **av, char **env)
 			if (!strcmp(str, "ls"))
 				execve("/bin/ls", av, NULL);
 			*/
-			parse_readline(str);
+			parse_readline(str, env);
 		}
 	}
 	return (0);

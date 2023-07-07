@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/07 10:50:24 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/07 12:32:10 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	ft_cd(char **args, char **env)
 	new_path = NULL;
 	if (args[1] == NULL)
 	{
-		path = ft_strdup("/Users/mcreus");
+		path = ft_strdup("/Users/USER");
 		chdir(path);
 	}
 	else if (args[1][0] == '~')
 	{
-		path = ft_strjoin("/Users/mcreus", args[1] + 1);
+		path = ft_strjoin("/Users/USER", args[1] + 1);
 		chdir(path);
 	}
 	else if (args[1][0] == '-')
@@ -48,6 +48,7 @@ int	ft_cd(char **args, char **env)
 		path = ft_strdup(args[1]);
 		chdir(path);
 	}
+	path = getcwd(path, 0);
 	i = 0;
 	while (env[i])
 	{
@@ -75,4 +76,3 @@ int	ft_cd(char **args, char **env)
 	free(new_path);
 	return (0);
 }
-
