@@ -10,6 +10,7 @@ SRCS		= main.c \
 			  parse_readline.c \
 			  find_cmd.c \
 			  echo.c \
+			  cd.c \
 
 INC			= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 

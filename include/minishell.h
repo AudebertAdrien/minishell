@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/06 14:28:36 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/07 10:18:06 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct s_var
 	char 	*pwd;
 	int		exit;
 	char	*str;
-	t_path	*path;
-	t_char	*ch;
 }	t_var;
 
 typedef struct s_path
@@ -55,5 +53,6 @@ char	*display_prompt(char **env);
 int		parse_readline(char *str);
 int		find_cmd(char **tab);
 int		echo(char **tab);
+int		ft_cd(char **args, char **env);
 
 #endif
