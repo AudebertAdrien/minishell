@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:07:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/10 15:29:31 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:35:46 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,45 @@ char	*ft_get_path(char *pwd_line, char *user_line)
 	return (NULL);
 }
 
+char	*grep_workstation(char *session_line)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (session_line[i])
+	{
+		if (session_line[i] == '/')
+		{
+			while (session_line[i + j] != '.')
+				j++;
+			return (ft_substr(session_line, i + 1, j - 1));
+		}
+		i++;
+	}
+	return (NULL);
+}
+
 char	is_home_or_root(char *pwd_line, char *user_line)
 {
 	if (ft_strnstr(pwd_line, user_line, ft_strlen(pwd_line)))
 		return (1);
 	return (0);
+}
+
+char	*get_relative_path(char *pwd_line, char *user_line)
+{
+	char	*str;
+
+	if (is_home_or_root(pwd_line, user_line))
+	{
+		str = ft_get_path(pwd_line, user_line);
+		printf("=> %s\n", str);
+		return (str);
+	}
+	else 
+		return (pwd_line);
 }
 
 char	*display_prompt(char **env)
@@ -65,7 +99,7 @@ char	*display_prompt(char **env)
 	char	*user_line;
 //	char	*pwd_line;
 
-	//char	*relative_path_line;
+//	char	*relative_path_line;
 	char	*cluster_line;
 //	char	*tilde;
 
