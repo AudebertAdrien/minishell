@@ -11,6 +11,7 @@ SRCS		= main.c \
 			  find_cmd.c \
 			  echo.c \
 			  cd.c \
+			  pwd.c \
 
 INC			= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 

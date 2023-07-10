@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/07 10:18:06 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/07 12:26:42 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int		parse_readline(char *str);
 int		find_cmd(char **tab);
 int		echo(char **tab);
 int		ft_cd(char **args, char **env);
+char	*ft_pwd(char **args, char **env);
 
 #endif
