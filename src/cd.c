@@ -6,13 +6,13 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/07 12:32:10 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/10 12:10:40 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_cd(char **args, char **env)
+int	ft_cd(char **ac, char **env)
 {
 	int		i;
 	char	*path;
@@ -25,7 +25,7 @@ int	ft_cd(char **args, char **env)
 	new_path = NULL;
 	if (args[1] == NULL)
 	{
-		path = ft_strdup("/Users/USER");
+		path = ft_strdup("/usr/USER");
 		chdir(path);
 	}
 	else if (args[1][0] == '~')
