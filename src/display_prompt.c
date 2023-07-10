@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:07:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/07 14:32:52 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:57:39 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,29 +97,24 @@ char	*display_prompt(char **env)
 {
 	char	*session_line;
 	char	*user_line;
-	char	*pwd_line;
+//	char	*pwd_line;
 
-	char	*relative_path_line;
+//	char	*relative_path_line;
 	char	*cluster_line;
-	char	*tilde;
+//	char	*tilde;
 
-	tilde = "";
+//	tilde = "";
 	session_line = ft_get_env(env, "SESSION_MANAGER");
-	pwd_line = getenv("PWD");
+//	pwd_line = getenv("PWD");
 	user_line = getenv("USER");
 
 	cluster_line = grep_workstation(session_line);
+	/*
 	if (is_home_or_root(pwd_line, user_line))
 		tilde = "~";
-	relative_path_line = get_relative_path(pwd_line, user_line);
-	/*
-	if (!user_line)
-		user_line = "";
-	if (!relative_path_line)
-		relative_path_line = "";
-	*/
-
+		*/
+//	relative_path_line = get_relative_path(pwd_line, user_line);
 	//ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
-	ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
+	ft_printf("%s@%s ", user_line, cluster_line);
 	return (NULL);
 }
