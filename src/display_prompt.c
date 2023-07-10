@@ -6,7 +6,11 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:07:53 by aaudeber          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/10 14:59:30 by mcreus           ###   ########.fr       */
+=======
+/*   Updated: 2023/07/10 15:35:46 by motoko           ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +101,19 @@ char	*display_prompt(char **env)
 {
 	char	*session_line;
 	char	*user_line;
-	char	*pwd_line;
+//	char	*pwd_line;
 
+<<<<<<< HEAD
 	char	*relative_path_line;
+=======
+//	char	*relative_path_line;
+>>>>>>> master
 	char	*cluster_line;
-	char	*tilde;
+//	char	*tilde;
 
-	tilde = "";
+//	tilde = "";
 	session_line = ft_get_env(env, "SESSION_MANAGER");
+<<<<<<< HEAD
 	pwd_line = getenv("PWD");
     user_line = getenv("USER");
 
@@ -122,3 +131,18 @@ char	*display_prompt(char **env)
 	ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
 		return (NULL);
 }
+=======
+//	pwd_line = getenv("PWD");
+	user_line = getenv("USER");
+
+	cluster_line = grep_workstation(session_line);
+	/*
+	if (is_home_or_root(pwd_line, user_line))
+		tilde = "~";
+		*/
+//	relative_path_line = get_relative_path(pwd_line, user_line);
+	//ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
+	ft_printf("%s@%s ", user_line, cluster_line);
+	return (NULL);
+}
+>>>>>>> master

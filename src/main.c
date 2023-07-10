@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/07 14:07:16 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/10 15:36:37 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **av, char **env)
 			free(str);
 			str = (char *)NULL;
 		}
-		//display_prompt(env);
+		display_prompt(env);
 		str = readline("");
 		add_history(str);
 		process = fork();
@@ -37,13 +37,7 @@ int	main(int ac, char **av, char **env)
 			if (process > 0)
 				wait();
 			if (process == 0)
-			/*
-			if (!strcmp(str, "pwd"))
-				execve("/bin/pwd", av, NULL);
-			if (!strcmp(str, "ls"))
-				execve("/bin/ls", av, NULL);
-			*/
-			parse_readline(str, env);
+		parse_readline(str, env);
 		}
 	}
 	return (0);
