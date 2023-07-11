@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:07:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/10 15:35:46 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/11 11:51:49 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,36 @@ char	*ft_get_path(char *pwd_line, char *user_line)
 	return (NULL);
 }
 
+int	cmp_char(char c, char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (c == str[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 char	*grep_workstation(char *session_line)
 {
 	int		i;
 	int		j;
+	char		*str;
 
 	i = 0;
 	j = 0;
+	str = "";
+	if (APPLE)
+		return (str);
 	while (session_line[i])
 	{
 		if (session_line[i] == '/')
 		{
-			while (session_line[i + j] != '.')
+			while (cmp_char(session_line[i + j], ".:"))
 				j++;
 			return (ft_substr(session_line, i + 1, j - 1));
 		}

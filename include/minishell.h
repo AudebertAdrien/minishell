@@ -6,12 +6,18 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/10 15:32:13 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/11 11:46:11 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+#ifdef __APPLE__
+# define APPLE 1
+#else
+# define APPLE 0
+#endif
 
 # include <stdio.h>
 # include <unistd.h>
