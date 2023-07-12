@@ -1,7 +1,7 @@
 MAIN		= minishell
 
 CC			= gcc -g
-CFLAGS		= -Wall -Wextra
+CFLAGS		= -Wall -Wextra -Werror
 
 VPATH		= src
 
