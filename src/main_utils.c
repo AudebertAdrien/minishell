@@ -1,17 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_envcpy.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
+/*   By: motoko <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 14:29:29 by mcreus            #+#    #+#             */
-/*   Updated: 2023/07/12 14:30:02 by mcreus           ###   ########.fr       */
+/*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
+/*   Updated: 2023/07/12 16:56:53 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
+
+int	cmp_char(char c, char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (c == str[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 char    **ft_envcpy(char **env)
 {

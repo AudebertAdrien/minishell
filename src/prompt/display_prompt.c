@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:07:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/12 15:02:47 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/12 17:51:37 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_get_index(char **env, char *needle)
 {
-	char	*haystack;
 	int		i;
 	int		j;
 	int		len;
+	char		*haystack;
 
 	i = 0;
 	len = ft_strlen(needle);
@@ -35,10 +35,9 @@ int	ft_get_index(char **env, char *needle)
 	return (0);
 }
 
-
 char	*ft_get_env(char **env, char *needle)
 {
-	char	*haystack;
+	char		*haystack;
 	int		i;
 	int		j;
 	int		len;
@@ -81,14 +80,18 @@ char	*grep_workstation(char *session_line)
 {
 	int		i;
 	int		j;
+	char		*str;
 
 	i = 0;
 	j = 0;
+	str = "";
+	if (APPLE)
+		return (str);
 	while (session_line[i])
 	{
 		if (session_line[i] == '/')
 		{
-			while (session_line[i + j] != '.')
+			while (cmp_char(session_line[i + j], ".:"))
 				j++;
 			return (ft_substr(session_line, i + 1, j - 1));
 		}
@@ -111,7 +114,6 @@ char	*get_relative_path(char *pwd_line, char *user_line)
 	if (is_home_or_root(pwd_line, user_line))
 	{
 		str = ft_get_path(pwd_line, user_line);
-		printf("=> %s\n", str);
 		return (str);
 	}
 	else 
@@ -120,27 +122,29 @@ char	*get_relative_path(char *pwd_line, char *user_line)
 
 char	*display_prompt(char **env)
 {
-	char	*session_line;
-	char	*user_line;
-	char	*pwd_line;
-
-	char	*relative_path_line;
-	char	*cluster_line = NULL;
 	char	*tilde;
+	char	*session_line;
+	char	*pwd_line;
+	char	*user_line;
+	char	*cluster_line;
+	char	*relative_path_line;
 
 	tilde = "";
 	session_line = ft_get_env(env, "SESSION_MANAGER");
 	pwd_line = ft_get_env(env, "PWD");
-    user_line = ft_get_env(env, "USER");
-
+    	user_line = ft_get_env(env, "USER");
 	cluster_line = grep_workstation(session_line);
+
 	if (is_home_or_root(pwd_line, user_line))
 	    tilde = "~";
+
 	relative_path_line = get_relative_path(pwd_line, user_line);
+
 	if (!user_line)
 		user_line = "";
 	if (!relative_path_line)
 		relative_path_line = "";
+
 	ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
 	return (NULL);
 }

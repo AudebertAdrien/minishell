@@ -1,27 +1,28 @@
 MAIN		= minishell
 
-CC			= gcc -g
+CC		= gcc -g
 CFLAGS		= -Wall -Wextra
 
-VPATH		= src
+VPATH		= src:src/prompt:src/cd
 
 SRCS		= main.c \
-			  display_prompt.c \
-			  parse_readline.c \
-			  find_cmd.c \
-			  echo.c \
-			  cd.c \
-			  pwd.c \
-			  ft_envcpy.c \
-			  env.c \
+		  display_prompt.c \
+		  parse_readline.c \
+		  find_cmd.c \
+		  echo.c \
+		  cd.c \
+		  pwd.c \
+		  env.c \
+		  main_utils.c \
 
-INC			= -I./include -I./libft -I./printf
+INC		= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 
 PRINTF		= -Lprintf -lftprintf
 
-OBJ			= $(addprefix obj/, $(SRCS:.c=.o))
+OBJ_DIR		= obj
+OBJ		= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-obj/%.o: src/%.c 
+$(OBJ_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 all: create_obj_dir $(MAIN) 

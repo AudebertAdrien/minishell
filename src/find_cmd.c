@@ -6,13 +6,13 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/12 16:02:37 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/12 17:53:04 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	find_cmd(char **tab, char **env)
+int	find_cmd(char **tab, char **envcpy)
 {
 	char	*cmd;
 
@@ -20,10 +20,10 @@ int	find_cmd(char **tab, char **env)
 	if (!strcmp(cmd, "echo"))
 		echo(tab);
 	else if (!strcmp(cmd, "cd"))
-		ft_cd(tab, env);
+		ft_cd(tab, envcpy);
 	else if (!strcmp(cmd, "pwd"))
-		ft_pwd(env);
+		ft_pwd(envcpy);
 	else if (!strcmp(cmd, "env"))
-		ft_env(env);
+		ft_env(envcpy);
 	return (0);
 }
