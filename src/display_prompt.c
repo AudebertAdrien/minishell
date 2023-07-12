@@ -6,11 +6,35 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:07:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/11 18:43:32 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/12 15:02:47 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_get_index(char **env, char *needle)
+{
+	char	*haystack;
+	int		i;
+	int		j;
+	int		len;
+
+	i = 0;
+	len = ft_strlen(needle);
+	env[i] = (char *)malloc(sizeof(char) * (len + 1));
+	while (env[i])
+	{
+		haystack = env[i];
+		j = 0;
+		while (needle[j] && (haystack[j] == needle[j]) && j < len)
+			j++;
+		if (needle[j] == '\0')
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
 
 char	*ft_get_env(char **env, char *needle)
 {
@@ -53,7 +77,7 @@ char	*ft_get_path(char *pwd_line, char *user_line)
 	return (NULL);
 }
 
-/*char	*grep_workstation(char *session_line)
+char	*grep_workstation(char *session_line)
 {
 	int		i;
 	int		j;
@@ -71,7 +95,7 @@ char	*ft_get_path(char *pwd_line, char *user_line)
 		i++;
 	}
 	return (NULL);
-}*/
+}
 
 char	is_home_or_root(char *pwd_line, char *user_line)
 {
@@ -106,10 +130,10 @@ char	*display_prompt(char **env)
 
 	tilde = "";
 	session_line = ft_get_env(env, "SESSION_MANAGER");
-	pwd_line = getenv("PWD");
-    user_line = getenv("USER");
+	pwd_line = ft_get_env(env, "PWD");
+    user_line = ft_get_env(env, "USER");
 
-	//cluster_line = grep_workstation(session_line);
+	cluster_line = grep_workstation(session_line);
 	if (is_home_or_root(pwd_line, user_line))
 	    tilde = "~";
 	relative_path_line = get_relative_path(pwd_line, user_line);

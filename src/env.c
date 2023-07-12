@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_cmd.c                                         :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/12 16:02:37 by mcreus           ###   ########.fr       */
+/*   Created: 2023/07/12 16:01:35 by mcreus            #+#    #+#             */
+/*   Updated: 2023/07/12 16:01:53 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	find_cmd(char **tab, char **env)
+void    ft_env(char **env)
 {
-	char	*cmd;
+    int i;
 
-	cmd = tab[0];
-	if (!strcmp(cmd, "echo"))
-		echo(tab);
-	else if (!strcmp(cmd, "cd"))
-		ft_cd(tab, env);
-	else if (!strcmp(cmd, "pwd"))
-		ft_pwd(env);
-	else if (!strcmp(cmd, "env"))
-		ft_env(env);
-	return (0);
+    i = 0;
+    while (env[i])
+    {
+        ft_printf("%s\n", env[i]);
+        i++;
+    }
 }

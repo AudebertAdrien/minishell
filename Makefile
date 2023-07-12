@@ -1,7 +1,7 @@
 MAIN		= minishell
 
 CC			= gcc -g
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra
 
 VPATH		= src
 
@@ -12,6 +12,8 @@ SRCS		= main.c \
 			  echo.c \
 			  cd.c \
 			  pwd.c \
+			  ft_envcpy.c \
+			  env.c \
 
 INC			= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 

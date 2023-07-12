@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_cmd.c                                         :+:      :+:    :+:   */
+/*   ft_envcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/12 16:02:37 by mcreus           ###   ########.fr       */
+/*   Created: 2023/07/12 14:29:29 by mcreus            #+#    #+#             */
+/*   Updated: 2023/07/12 14:30:02 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "minishell.h"
 
-int	find_cmd(char **tab, char **env)
+char    **ft_envcpy(char **env)
 {
-	char	*cmd;
+    char    **envcpy;
+    int     i;
 
-	cmd = tab[0];
-	if (!strcmp(cmd, "echo"))
-		echo(tab);
-	else if (!strcmp(cmd, "cd"))
-		ft_cd(tab, env);
-	else if (!strcmp(cmd, "pwd"))
-		ft_pwd(env);
-	else if (!strcmp(cmd, "env"))
-		ft_env(env);
-	return (0);
+    i = 0;
+    while (env[i])
+        i++;
+    envcpy = (char **)malloc(sizeof(char *) * (i + 1));
+    i = 0;
+    while (env[i])
+    {
+        envcpy[i] = ft_strdup(env[i]);
+        i++;
+    }
+    envcpy[i] = NULL;
+    return (envcpy);
 }

@@ -6,58 +6,37 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 12:17:11 by mcreus            #+#    #+#             */
-/*   Updated: 2023/07/07 12:33:07 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/12 11:06:54 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char    *ft_pwd(char **args, char **env)
+char    *ft_pwd(char **env)
 {
+    char    *pwd;
     char    *path;
-    int     i;
+    char    *user;
+    char    *workstation;
+    char    *session;
 
-    i = 0;
-    path = NULL;
-    if (args[1] == NULL)
+    pwd = ft_get_env(env, "PWD");
+    path = ft_get_path(pwd, "/");
+    user = ft_get_env(env, "USER");
+    workstation = ft_get_env(env, "WORKSTATION");
+    session = ft_get_env(env, "SESSION");
+    if (path)
     {
-        path = ft_strdup("/Users/USER");
-        chdir(path);
-    }
-    else if (args[1][0] == '~')
-    {
-        path = ft_strjoin("/Users/USER", args[1] + 1);
-        chdir(path);
-    }
-    else if (args[1][0] == '-')
-    {
-        while (env[i])
-        {
-            if (ft_strncmp(env[i], "OLDPWD=", 7) == 0)
-                path = ft_strdup(env[i] + 7);
-            i++;
-        }
-        chdir(path);
+        ft_printf("%s@%s:%s %s\n", user, workstation, path, session);
+        free(path);
+        path = NULL;
     }
     else
+        ft_printf("%s@%s:%s %s\n", user, workstation, pwd, session);
+    if (pwd)
     {
-        path = ft_strdup(args[1]);
-        chdir(path);
+        free(pwd);
+        pwd = NULL;
     }
-    path = getcwd(path, 0);
-    i = 0;
-    while (env[i])
-    {
-        if (ft_strncmp(env[i], "PWD=", 4) == 0)
-            path = ft_strdup(env[i] + 4);
-        i++;
-    }
-    i = 0;
-    while (env[i])
-    {
-        if (ft_strncmp(env[i], "OLDPWD=", 7) == 0)
-            path = ft_strdup(env[i] + 7);
-        i++;
-    }
-    return (path);
+    return (NULL);
 }
