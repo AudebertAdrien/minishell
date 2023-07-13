@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   display_prompt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -90,11 +88,7 @@ char	*grep_workstation(char *session_line)
 	while (session_line[i])
 	{
 		if (session_line[i] == '/')
-		{
-			while (cmp_char(session_line[i + j], ".:"))
-				j++;
 			return (ft_substr(session_line, i + 1, j - 1));
-		}
 		i++;
 	}
 	return (NULL);
@@ -130,8 +124,6 @@ char	*display_prompt(char **env)
 	char	*relative_path_line;
 
 	tilde = "";
-	session_line = ft_get_env(env, "SESSION_MANAGER");
-	pwd_line = ft_get_env(env, "PWD");
     	user_line = ft_get_env(env, "USER");
 	cluster_line = grep_workstation(session_line);
 
