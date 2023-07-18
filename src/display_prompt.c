@@ -6,11 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:07:53 by aaudeber          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/12 15:02:47 by mcreus           ###   ########.fr       */
-=======
-/*   Updated: 2023/07/11 11:51:49 by motoko           ###   ########.fr       */
->>>>>>> a7de90ab4bf0c7f7e231ad588a9764c1e99d9e30
+/*   Updated: 2023/07/17 12:12:40 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +91,7 @@ int	cmp_char(char c, char *str)
 	return (1);
 }
 
-char	*grep_workstation(char *session_line)
+/*char	*grep_workstation(char *session_line)
 {
 	int		i;
 	int		j;
@@ -117,7 +113,7 @@ char	*grep_workstation(char *session_line)
 		i++;
 	}
 	return (NULL);
-}
+}*/
 
 char	is_home_or_root(char *pwd_line, char *user_line)
 {
@@ -155,7 +151,7 @@ char	*display_prompt(char **env)
 	pwd_line = ft_get_env(env, "PWD");
     user_line = ft_get_env(env, "USER");
 
-	cluster_line = grep_workstation(session_line);
+	//cluster_line = grep_workstation(session_line);
 	if (is_home_or_root(pwd_line, user_line))
 	    tilde = "~";
 	relative_path_line = get_relative_path(pwd_line, user_line);

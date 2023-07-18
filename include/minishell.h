@@ -6,11 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/12 16:12:49 by mcreus           ###   ########.fr       */
-=======
-/*   Updated: 2023/07/11 11:46:11 by motoko           ###   ########.fr       */
->>>>>>> a7de90ab4bf0c7f7e231ad588a9764c1e99d9e30
+/*   Updated: 2023/07/17 12:15:25 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +26,8 @@
 # include <signal.h>
 # include <sys/types.h>
 # include <dirent.h>
+# include <stdlib.h>
+# include <errno.h>
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -63,7 +61,7 @@ char	*display_prompt(char **env);
 int		parse_readline(char *str, char **env);
 int		find_cmd(char **tab, char **env);
 int		echo(char **tab);
-int		ft_cd(char **args, char **env);
+int		ft_cd(char **tab, char **env);
 char	*ft_pwd(char **env);
 char	*ft_get_env(char **env, char *needle);
 int	ft_get_index(char **env, char *needle);
