@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:37:18 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/10 15:42:44 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/17 12:16:01 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
+
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:43:01 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/05/06 15:47:02 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:16:30 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdarg.h>
+# include <stddef.h>
 
 int		ft_printf(const char *format, ...);
 int		ft_printnbr_base(unsigned int nbr, char *base);

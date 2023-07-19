@@ -6,77 +6,78 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/17 18:00:57 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/19 11:10:57 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	change_dir_to_path(char *path, t_var *t_var)
+int	find_last_slash(char *str)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == '/')
+			count = i;
+		i++;
+	}
+	return (count);
+}
+
+int	ft_cd(char **args, char **env)
 {
 	char	*pwd;
-	char	*error_msg;
-	char	buffer[2048];
-
-	pwd = getcwd(buffer, 2048);
-	
-	if (chdir(path) != 0 && ft_strchr(path, '>') == NULL)
-	{
-		error_msg = ft_strjoin("cd: ", path);
-		ft_printf("%s\n", error_msg);
-		free(error_msg);
-		return ;
-	}
-	pwd = getcwd(buffer, 2048);
-	hashmap_insert("PWD", pwd, t_var->env);
-}
-
-static void	change_dir_to_oldpwd(char *path)
-{
-	ft_printf("%s\n", path);
-	change_dir_to_path(path);
-}
-
-static void	change_dir_to_home(void)
-{
+	char	*old_pwd;
 	char	*path;
-	t_var	*t_var;
 
-	path = ft_strdup(hashmap_search(t_var->env, "HOME"));
-	if (path == NULL)
-	{
-		ft_printf("%s\n", "NO_HOME");
-		free(path);
-		return ;
-	}
-	change_dir_to_path(path);
-	free(path);
-}
+	char	*new_pwd;
 
-void	cd(char	*path)
-{
-	char	*current_path;
-	t_var	*t_var;
+	int		pwd_i;
+	int		old_pwd_i;
 
-	if ((!path) || ft_strcmp(path, "~") == 0)
+	(void)env;
+	path = ft_strdup(ft_get_env(env, "HOME"));
+	pwd = ft_get_env(env, "PWD");
+	old_pwd = ft_get_env(env, "OLDPWD");
+
+	pwd_i = ft_get_index(env, "PWD");
+	old_pwd_i = ft_get_index(env, "OLDPWD");
+	if (!args[1] || !strcmp(args[1], "~"))
 	{
-		change_dir_to_home();
-		return ;
+		new_pwd = ft_strjoin("PWD=",ft_substr(path, 5, ft_strlen(path)));
+		env[pwd_i] = NULL;
+		free(pwd);
+		env[pwd_i] = new_pwd;
+
+		chdir(path);
+
+		/*
+		env[old_pwd_i] = NULL;
+		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
+		env[old_pwd_i] = old_pwd;
+		*/
+	
 	}
-	else if (ft_strcmp(path, "-") == 0)
+	
+	if (args[1] && !strcmp(args[1], ".."))
 	{
-		current_path = ft_strdup(hashmap_search(t_var->env, "OLDPWD"));
-		if (current_path == NULL)
-		{
-			ft_printf("%s\n", "NO_OLDPWD");
-			return ;
-		}
-		change_dir_to_oldpwd(current_path);
+		new_pwd = ft_strjoin("PWD=",ft_substr(pwd, 4, find_last_slash(pwd) - 4));
+		env[pwd_i] = NULL;
+		free(pwd);
+		env[pwd_i] = new_pwd;
+
+		chdir(new_pwd);
+	
+		/*
+		env[old_pwd_i] = NULL;
+		free(old_pwd);
+		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
+		env[old_pwd_i] = old_pwd;
+		*/
 	}
-	else
-	{
-		current_path = ft_strdup(path);
-		change_dir_to_path(current_path);
-	}
-	free(current_path);
+	return (0);
 }
