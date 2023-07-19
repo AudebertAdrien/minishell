@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/19 11:10:57 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/19 11:26:21 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ int	ft_cd(char **args, char **env)
 	char	*pwd;
 	char	*old_pwd;
 	char	*path;
+	char	*str;
 
 	char	*new_pwd;
 
 	int		pwd_i;
 	int		old_pwd_i;
+	int		i;
 
 	(void)env;
 	path = ft_strdup(ft_get_env(env, "HOME"));
@@ -62,8 +64,7 @@ int	ft_cd(char **args, char **env)
 		*/
 	
 	}
-	
-	if (args[1] && !strcmp(args[1], ".."))
+	else if (args[1] && !strcmp(args[1], ".."))
 	{
 		new_pwd = ft_strjoin("PWD=",ft_substr(pwd, 4, find_last_slash(pwd) - 4));
 		env[pwd_i] = NULL;
@@ -78,6 +79,11 @@ int	ft_cd(char **args, char **env)
 		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
 		env[old_pwd_i] = old_pwd;
 		*/
+	}
+	i = 0;
+	else if (args[1] && args[1][i])
+	{
+		
 	}
 	return (0);
 }
