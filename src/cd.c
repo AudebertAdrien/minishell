@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/20 13:38:59 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/20 15:02:15 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,21 @@ int	ft_cd(char **args, char **env)
 	{
 		env[old_pwd_i] = NULL;
 		free(old_pwd);
-		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
+		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 4, ft_strlen(pwd)));
 		env[old_pwd_i] = old_pwd;
 		
 		new_pwd = ft_strjoin("PWD=",ft_substr(path, 5, ft_strlen(path)));
 		env[pwd_i] = NULL;
 		free(pwd);
 		env[pwd_i] = new_pwd;
-
-		chdir(path);
+		
+		chdir(ft_substr(new_pwd, 4, ft_strlen(new_pwd)));
 	}
 	else if (args[1] && !ft_strcmp(args[1], ".."))
 	{
 		env[old_pwd_i] = NULL;
 		free(old_pwd);
-		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
+		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 4, ft_strlen(pwd)));
 		env[old_pwd_i] = old_pwd;
 		
 		new_pwd = NULL;
@@ -74,7 +74,7 @@ int	ft_cd(char **args, char **env)
 		free(pwd);
 		env[pwd_i] = new_pwd;
 
-		chdir(new_pwd);
+		chdir(ft_substr(new_pwd, 4, ft_strlen(new_pwd)));
 	}
 	
 	else if (args[1] && !ft_strcmp(args[1], "-"))
@@ -84,12 +84,12 @@ int	ft_cd(char **args, char **env)
 		new_pwd = ft_strjoin("PWD=",ft_substr(old_pwd, 7, ft_strlen(old_pwd)));
 		env[old_pwd_i] = NULL;
 		free(old_pwd);
-		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
+		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 4, ft_strlen(pwd)));
 		env[old_pwd_i] = old_pwd;
 		env[pwd_i] = NULL;
 		free(pwd);
 		env[pwd_i] = new_pwd;
-		chdir(new_pwd);
+		chdir(ft_substr(new_pwd, 4, ft_strlen(new_pwd)));
 	}
 	/*
 	else if (args[1] && args[1][i])
@@ -103,5 +103,32 @@ int	ft_cd(char **args, char **env)
 		chdir(new_pwd);
 	}
 	*/
+	else
+	{
+		struct dirent *pDirent;
+        DIR *pDir;
+		
+		char *buf;
+
+        // Ensure we can open directory.
+
+        pDir = opendir (args[1]);
+		printf("pDir = %s\n", pDir);
+        if (pDir == NULL) {
+            printf ("Cannot open directory '%s'\n", args[1]);
+            return 1;
+        }
+
+        // Process each entry.
+
+        while ((pDirent = readdir(pDir)) != NULL) {
+            printf ("[%s]\n", pDirent->d_name);
+        }
+
+        // Close directory and exit.
+		getcwd(buf, 1000);
+		printf("buf = %s\n", buf);
+        closedir (pDir);
+    }
 	return (0);
 }
