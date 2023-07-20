@@ -88,7 +88,11 @@ char	*grep_workstation(char *session_line)
 	while (session_line[i])
 	{
 		if (session_line[i] == '/')
+		{
+			while (!cmp_char(session_line[i], ":.")
+				j++;
 			return (ft_substr(session_line, i + 1, j - 1));
+		}
 		i++;
 	}
 	return (NULL);
@@ -114,29 +118,85 @@ char	*get_relative_path(char *pwd_line, char *user_line)
 		return (pwd_line);
 }
 
+char	*get_user_line(char **env)
+{
+	int	i;
+	char	*user_line;
+
+	i = 0;
+    	user_line = ft_get_env(env, "USER");
+	if (!user_line)
+		user_line = "";
+	while (user_line[i])
+	{
+		if (user_line[i] == '=')
+			return (ft_substr(user_line, i + 1, ft_strlen(user_line)));
+		i++;
+	}
+	return (user_line);
+}
+
+char	*get_user_line(char **env)
+{
+	int	i;
+	char	*line;
+
+	i = 0;
+    	line = ft_get_env(env, ref);
+	if (!line)
+		line = "";
+	while (line[i])
+	{
+		if (line[i] == '=')
+			return (ft_substr(line, i + 1, ft_strlen(line)));
+		i++;
+	}
+	return (user_line);
+}
+
+char	*get_session_line(char **env)
+{
+	int	i;
+	char	*line;
+
+	i = 0;
+    	line = ft_get_env(env, ref);
+	if (!line)
+		line = "";
+	while (line[i])
+	{
+		if (line[i] == '/')
+			return (ft_substr(line, i + 1, ));
+		i++;
+	}
+	return (user_line);
+}
+
 char	*display_prompt(char **env)
 {
 	char	*tilde;
 	char	*session_line;
 	char	*pwd_line;
-	char	*user_line;
 	char	*cluster_line;
 	char	*relative_path_line;
+	char	**tab;
 
 	tilde = "";
-    	user_line = ft_get_env(env, "USER");
+    	session_line = ft_get_env(env, "SESSION_MANAGER");
+    	pwd_line = ft_get_env(env, "PWD");
+
+	tab[0] = get_user_line(env);
+		
 	cluster_line = grep_workstation(session_line);
 
-	if (is_home_or_root(pwd_line, user_line))
+	if (is_home_or_root(pwd_line, tab[0]))
 	    tilde = "~";
 
-	relative_path_line = get_relative_path(pwd_line, user_line);
+	relative_path_line = get_relative_path(pwd_line, tab[0]);
 
-	if (!user_line)
-		user_line = "";
 	if (!relative_path_line)
 		relative_path_line = "";
 
-	ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
+	ft_printf("%s@%s:%s%s$ ", tab[0], cluster_line, tilde, relative_path_line);
 	return (NULL);
 }
