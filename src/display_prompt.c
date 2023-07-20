@@ -89,7 +89,7 @@ char	*grep_workstation(char *session_line)
 	{
 		if (session_line[i] == '/')
 		{
-			while (!cmp_char(session_line[i], ":.")
+			while (cmp_char(session_line[i + j], ":."))
 				j++;
 			return (ft_substr(session_line, i + 1, j - 1));
 		}
@@ -136,7 +136,8 @@ char	*get_user_line(char **env)
 	return (user_line);
 }
 
-char	*get_user_line(char **env)
+/*
+char	*get_user_line(char **env, char *ref)
 {
 	int	i;
 	char	*line;
@@ -160,7 +161,7 @@ char	*get_session_line(char **env)
 	char	*line;
 
 	i = 0;
-    	line = ft_get_env(env, ref);
+    	line = ft_get_env(env, "SESSION_MANAGER");
 	if (!line)
 		line = "";
 	while (line[i])
@@ -171,6 +172,7 @@ char	*get_session_line(char **env)
 	}
 	return (user_line);
 }
+*/
 
 char	*display_prompt(char **env)
 {
@@ -179,24 +181,24 @@ char	*display_prompt(char **env)
 	char	*pwd_line;
 	char	*cluster_line;
 	char	*relative_path_line;
-	char	**tab;
+	char	*user_line;
 
 	tilde = "";
     	session_line = ft_get_env(env, "SESSION_MANAGER");
     	pwd_line = ft_get_env(env, "PWD");
 
-	tab[0] = get_user_line(env);
+	user_line = get_user_line(env);
 		
 	cluster_line = grep_workstation(session_line);
 
-	if (is_home_or_root(pwd_line, tab[0]))
+	if (is_home_or_root(pwd_line, user_line))
 	    tilde = "~";
 
-	relative_path_line = get_relative_path(pwd_line, tab[0]);
+	relative_path_line = get_relative_path(pwd_line, user_line);
 
 	if (!relative_path_line)
 		relative_path_line = "";
 
-	ft_printf("%s@%s:%s%s$ ", tab[0], cluster_line, tilde, relative_path_line);
+	ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
 	return (NULL);
 }

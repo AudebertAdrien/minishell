@@ -3,7 +3,7 @@ MAIN		= minishell
 CC		= gcc -g
 CFLAGS		= -Wall -Wextra
 
-VPATH		= src:src/prompt:src/cd
+VPATH		= src
 
 SRCS		= main.c \
 		  display_prompt.c \
