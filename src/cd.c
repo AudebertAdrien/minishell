@@ -6,68 +6,80 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/12 16:10:02 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/17 12:40:56 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	find_last_slash(char *str)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == '/')
+			count = i;
+		i++;
+	}
+	return (count);
+}
+
 int	ft_cd(char **args, char **env)
 {
 	char	*pwd;
-	//char	*old_pwd;
-	char	*new_pwd;
+	char	*old_pwd;
 	char	*path;
-	int		i;
-	int		index;
-	int	len = ft_strlen(getenv("HOME"));
-	char	*home_value;
+
+	char	*new_pwd;
+
+	int		pwd_i;
+	int		old_pwd_i;
 
 	(void)env;
-	//old_pwd = ft_getenv("OLDPWD");
-	path = (char *)malloc(sizeof(char) * len + 1);
+	path = ft_strdup(ft_get_env(env, "HOME"));
+	pwd = ft_get_env(env, "PWD");
+	old_pwd = ft_get_env(env, "OLDPWD");
+
+	pwd_i = ft_get_index(env, "PWD");
+	old_pwd_i = ft_get_index(env, "OLDPWD");
 	if (!args[1] || !strcmp(args[1], "~"))
 	{
-		/*path = get_relative_path(pwd, getenv("USER"));
-		if (!path)
-			return (ft_printf("cd: HOME not set\n"));*/
-		path = ft_strdup(ft_get_env(env, "HOME"));
-		i = chdir(path);
-		index = ft_get_index(env, "PWD");
-		pwd = ft_get_env(env, "PWD");
-		env[index] = NULL;
-		home_value = ft_strjoin("PWD=",ft_substr(path, 5, ft_strlen(path)));
-		env[index] = home_value;
-	}
-	/*else if (!strcmp(args[1], "-"))
-	{
-		if (!old_pwd)
-			return (ft_printf("cd: OLDPWD not set\n"));
-		path = old_pwd;
-	}
-	else
-		path = args[1];
-	//new_pwd = ft_get_path(pwd, path);
-	//if (!new_pwd)
-		//return (ft_printf("cd: %s: No such file or directory\n", path));
-	//if (chdir(new_pwd) == -1)
-		//return (ft_printf("cd: %s: No such file or directory\n", path));
-	if (old_pwd)
-	{
-		free(old_pwd);
-		old_pwd = NULL;
-	}
-	old_pwd = ft_strdup(pwd);
-	if (pwd)
-	{
+		new_pwd = ft_strjoin("PWD=",ft_substr(path, 5, ft_strlen(path)));
+		env[pwd_i] = NULL;
 		free(pwd);
-		pwd = NULL;
+		env[pwd_i] = new_pwd;
+
+		chdir(path);
+
+		/*
+		env[old_pwd_i] = NULL;
+		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
+		env[old_pwd_i] = old_pwd;
+		*/
+	
 	}
-	//pwd = ft_strdup(new_pwd);
-	if (new_pwd)
+	
+	if (args[1] && !strcmp(args[1], ".."))
 	{
-		free(new_pwd);
-		new_pwd = NULL;
-	}*/
+		new_pwd = ft_strjoin("PWD=",ft_substr(pwd, 4, find_last_slash(pwd) - 4));
+		env[pwd_i] = NULL;
+		free(pwd);
+		env[pwd_i] = new_pwd;
+
+		chdir(new_pwd);
+	
+		/*
+		env[old_pwd_i] = NULL;
+		free(old_pwd);
+		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
+		env[old_pwd_i] = old_pwd;
+		*/
+	}
+	
+	
 	return (0);
 }
