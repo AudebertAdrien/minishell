@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/20 13:12:48 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/20 15:19:12 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ char	*get_relative_path(char *pwd, char *user);
 void	ft_env(char **env);
 int	cmp_char(char c, char *str);
 char	**ft_envcpy(char **env);
+char	*free_and_join(char *s1, char *s2);
 #endif

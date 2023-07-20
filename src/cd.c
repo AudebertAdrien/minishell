@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/20 15:02:15 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/20 15:20:46 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,26 +91,10 @@ int	ft_cd(char **args, char **env)
 		env[pwd_i] = new_pwd;
 		chdir(ft_substr(new_pwd, 4, ft_strlen(new_pwd)));
 	}
-	/*
-	else if (args[1] && args[1][i])
-	{
-		str = ft_strjoin(pwd, "/");
-		path = ft_strjoin(str, args[1]);
-		new_pwd = ft_strjoin("PWD=",ft_substr(path, 4, ft_strlen(path)));
-		env[pwd_i] = NULL;
-		free(pwd);
-		env[pwd_i] = new_pwd;
-		chdir(new_pwd);
-	}
-	*/
 	else
 	{
 		struct dirent *pDirent;
         DIR *pDir;
-		
-		char *buf;
-
-        // Ensure we can open directory.
 
         pDir = opendir (args[1]);
 		printf("pDir = %s\n", pDir);
@@ -118,16 +102,15 @@ int	ft_cd(char **args, char **env)
             printf ("Cannot open directory '%s'\n", args[1]);
             return 1;
         }
-
-        // Process each entry.
-
-        while ((pDirent = readdir(pDir)) != NULL) {
-            printf ("[%s]\n", pDirent->d_name);
-        }
-
-        // Close directory and exit.
-		getcwd(buf, 1000);
-		printf("buf = %s\n", buf);
+		new_pwd = NULL;
+		free(new_pwd);
+		new_pwd = ft_strjoin(pwd, "/");
+		new_pwd = ft_strjoin(new_pwd, args[1]);
+		env[pwd_i] = NULL;
+		free(pwd);
+		env[pwd_i] = new_pwd;
+		
+        chdir(ft_substr(new_pwd, 4, ft_strlen(new_pwd)));
         closedir (pDir);
     }
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motoko <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
-/*   Updated: 2023/07/12 16:56:53 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/20 15:16:21 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,13 @@ char    **ft_envcpy(char **env)
     }
     envcpy[i] = NULL;
     return (envcpy);
+}
+
+char    *free_and_join(char *s1, char *s2)
+{
+    char    *tmp;
+
+    tmp = ft_strjoin(s1, s2);
+    free(s1);
+    return (tmp);
 }
