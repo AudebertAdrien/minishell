@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/20 13:30:10 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/20 13:38:59 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@ int	ft_cd(char **args, char **env)
 	char	*pwd;
 	char	*old_pwd;
 	char	*path;
-	char	*str;
 
 	char	*new_pwd;
 
-	int		pwd_i;
-	int		old_pwd_i;
+	int	pwd_i;
+	int	old_pwd_i;
 
 	(void)env;
 	path = ft_strdup(ft_get_env(env, "HOME"));
@@ -49,17 +48,17 @@ int	ft_cd(char **args, char **env)
 	old_pwd_i = ft_get_index(env, "OLDPWD");
 	if (!args[1] || !ft_strcmp(args[1], "~"))
 	{
+		env[old_pwd_i] = NULL;
+		free(old_pwd);
+		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
+		env[old_pwd_i] = old_pwd;
+		
 		new_pwd = ft_strjoin("PWD=",ft_substr(path, 5, ft_strlen(path)));
 		env[pwd_i] = NULL;
 		free(pwd);
 		env[pwd_i] = new_pwd;
 
 		chdir(path);
-
-		/*env[old_pwd_i] = NULL;
-		old_pwd = ft_strjoin("OLDPWD=",ft_substr(pwd, 5, ft_strlen(pwd)));
-		env[old_pwd_i] = old_pwd;*/
-	
 	}
 	else if (args[1] && !ft_strcmp(args[1], ".."))
 	{
@@ -76,7 +75,6 @@ int	ft_cd(char **args, char **env)
 		env[pwd_i] = new_pwd;
 
 		chdir(new_pwd);
-		//free(new_pwd);
 	}
 	
 	else if (args[1] && !ft_strcmp(args[1], "-"))
@@ -92,8 +90,8 @@ int	ft_cd(char **args, char **env)
 		free(pwd);
 		env[pwd_i] = new_pwd;
 		chdir(new_pwd);
-		//free(new_pwd);
 	}
+	/*
 	else if (args[1] && args[1][i])
 	{
 		str = ft_strjoin(pwd, "/");
@@ -104,5 +102,6 @@ int	ft_cd(char **args, char **env)
 		env[pwd_i] = new_pwd;
 		chdir(new_pwd);
 	}
+	*/
 	return (0);
 }
