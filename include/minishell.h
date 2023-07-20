@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/20 15:19:12 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/20 16:29:43 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <dirent.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <dirent.h>
 
 # include "libft.h"
 # include "ft_printf.h"
