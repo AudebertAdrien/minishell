@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/20 16:23:46 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/25 10:45:16 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int ac, char **av, char **env)
 		if (str)
 		{
 			if (process > 0)
-				wait();
+				wait(NULL);
 			if (process == 0)
 				parse_readline(str, envcpy);
 		}
