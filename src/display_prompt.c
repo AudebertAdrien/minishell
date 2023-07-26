@@ -115,7 +115,12 @@ char	*get_relative_path(char *pwd_line, char *user_line)
 		return (str);
 	}
 	else 
-		return (ft_substr(pwd_line, 4, ft_strlen(pwd_line)));
+	{
+		str = ft_substr(pwd_line, 4, ft_strlen(pwd_line));
+		if (!str[0])
+			str = "/";
+		return (str);
+	}
 }
 
 char	*get_user_line(char **env)
@@ -158,8 +163,6 @@ char	*display_prompt(char **env)
 
 	relative_path_line = get_relative_path(pwd_line, user_line);
 
-	if (!relative_path_line)
-		relative_path_line = "";
 
 	ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
 	return (NULL);

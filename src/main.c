@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/20 16:23:46 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/26 13:39:09 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char **av, char **env)
 			str = (char *)NULL;
 		}
 		display_prompt(envcpy);
-		str = readline(" ");
+		str = readline("");
 		add_history(str);
 		process = fork();
 		if (str)
