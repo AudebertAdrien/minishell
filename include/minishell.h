@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/25 22:30:25 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/26 17:15:04 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #else
 # define APPLE 0
 #endif
+# define IDLE_PROMT "<minishell>"
 
 # include <stdio.h>
 # include <unistd.h>
@@ -31,13 +32,23 @@
 # include <dirent.h>
 
 # include "libft.h"
-# include "ft_printf.h"
+
+int	g_signal;
+
+typedef enum e_signal{
+	no_signal = 0,
+	signal_default = 1,
+	signal_escape = 10,
+	signal_d = 20,
+	signal_c = 30,
+}t_sigal;
 
 typedef struct s_var
 {
 	char	**env;
+	char	**args;
 	char 	*pwd;
-	int		exit;
+	int		exit_status;
 	char	*str;
 	int		parent_pid;
 }	t_var;
@@ -78,9 +89,7 @@ void	ft_env(char **env);
 int		cmp_char(char c, char *str);
 char	**ft_envcpy(char **env);
 char	*free_and_join(char *s1, char *s2);
-void	export(char **input);
-void	free_array(char **args);
-void	set_paths(void);
-int		is_whitespace(char c);
-char	*get_env(char *str);
+void	ft_exit(char **args);
+void	print_builtin_error(char *arg, char *str);
+int		check_numeric(char *str);
 #endif

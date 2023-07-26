@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/25 22:18:40 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/26 16:01:58 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	find_cmd(char **tab, char **envcpy)
 		ft_env(envcpy);
 	else if (!strcmp(cmd, "ls"))
 		execve("/bin/ls", tab, envcpy);
+	else if (!strcmp(cmd, "exit"))
+		ft_exit(tab);
 	else if (!strcmp(cmd, "export"))
-		export(tab);
+		ft_export(tab, envcpy);
 	return (0);
 }
