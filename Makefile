@@ -14,6 +14,7 @@ SRCS		= main.c \
 		  pwd.c \
 		  env.c \
 		  main_utils.c \
+		  export.c \
 
 INC		= -I./include -I./libft
 LIBFT		= -Llibft -lft 
