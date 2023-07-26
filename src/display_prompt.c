@@ -115,7 +115,7 @@ char	*get_relative_path(char *pwd_line, char *user_line)
 		return (str);
 	}
 	else 
-		return (pwd_line);
+		return (ft_substr(pwd_line, 4, ft_strlen(pwd_line)));
 }
 
 char	*get_user_line(char **env)
@@ -135,44 +135,6 @@ char	*get_user_line(char **env)
 	}
 	return (user_line);
 }
-
-/*
-char	*get_user_line(char **env, char *ref)
-{
-	int	i;
-	char	*line;
-
-	i = 0;
-    	line = ft_get_env(env, ref);
-	if (!line)
-		line = "";
-	while (line[i])
-	{
-		if (line[i] == '=')
-			return (ft_substr(line, i + 1, ft_strlen(line)));
-		i++;
-	}
-	return (user_line);
-}
-
-char	*get_session_line(char **env)
-{
-	int	i;
-	char	*line;
-
-	i = 0;
-    	line = ft_get_env(env, "SESSION_MANAGER");
-	if (!line)
-		line = "";
-	while (line[i])
-	{
-		if (line[i] == '/')
-			return (ft_substr(line, i + 1, ));
-		i++;
-	}
-	return (user_line);
-}
-*/
 
 char	*display_prompt(char **env)
 {
