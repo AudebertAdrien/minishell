@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printchar.c                                     :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motoko <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:24:42 by motoko            #+#    #+#             */
-/*   Updated: 2023/03/06 10:12:07 by aaudeber         ###   ########.fr       */
+/*   Created: 2023/03/06 09:32:06 by aaudeber          #+#    #+#             */
+/*   Updated: 2023/07/24 13:06:58 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printchar(char c)
+int	ft_printstr(const char *str)
 {
-	return (write(1, &c, 1));
+	if (!str)
+		return (ft_printstr("(null)"));
+	return (write(1, str, ft_strlen(str)));
 }

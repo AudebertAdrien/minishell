@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printnbr_ptr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motoko <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:45:34 by motoko            #+#    #+#             */
-/*   Updated: 2023/03/07 13:48:00 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:06:46 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static int	ft_processes_base(unsigned long nbr, char *base, int count)
 {

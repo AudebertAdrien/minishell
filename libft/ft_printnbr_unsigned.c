@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printnbr_unsigned.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motoko <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:22:49 by motoko            #+#    #+#             */
-/*   Updated: 2023/03/06 17:12:57 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:06:52 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_printnbr_unsigned(size_t n, int count)
 {

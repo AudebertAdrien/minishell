@@ -15,7 +15,7 @@ SRCS		= main.c \
 		  env.c \
 		  main_utils.c \
 
-INC		= -I./include -I./libft -I./printf
+INC		= -I./include -I./libft
 LIBFT		= -Llibft -lft 
 PRINTF		= -Lprintf -lftprintf
 
@@ -33,18 +33,14 @@ create_obj_dir :
 create_libs:
 	@echo ✅ "Compile libft\n"
 	@make re -s -C ./libft
-	@echo ✅ "Compile ft_printf\n"
-	@make re -s -C ./printf
 
 $(MAIN): $(OBJ)
 	@echo ✅ "Compile minishell\n"
-	@$(CC) $^ -o $@ -lreadline $(INC) $(LIBFT) $(PRINTF)
+	@$(CC) $^ -o $@ -lreadline $(INC) $(LIBFT)
 
 clean_libs:
 	@echo ✅ "Clean libft\n"
 	@make fclean -s -C ./libft
-	@echo ✅ "Clean ft_printf\n"
-	@make fclean -s -C ./printf
 	
 clean: 
 	@echo ✅ "Clean minishell\n"

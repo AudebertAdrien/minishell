@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printnbr_int.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motoko <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:22:49 by motoko            #+#    #+#             */
-/*   Updated: 2023/03/07 13:32:22 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/07/24 13:06:40 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_printnbr_int(int n, int count)
 {
