@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/20 16:29:43 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/27 13:27:41 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ typedef struct s_char
 
 int	parse_readline(char *str, char **env);
 int	find_cmd(char **tab, char **env);
-int	echo(char **tab);
+int	echo(char **tab, char **env);
 int	ft_cd(char **args, char **env);
 char	*display_prompt(char **env);
 int	parse_readline(char *str, char **env);
 int	find_cmd(char **tab, char **env);
-int	echo(char **tab);
 int	ft_cd(char **tab, char **env);
 int	ft_pwd(char **args);
 char	*ft_get_env(char **env, char *needle);
