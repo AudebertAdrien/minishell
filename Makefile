@@ -36,14 +36,18 @@ create_obj_dir :
 create_libs:
 	@echo ✅ "Compile libft\n"
 	@make re -s -C ./libft
+	@echo ✅ "Compile printf\n"
+	@make re -s -C ./printf
 
 $(MAIN): $(OBJ)
 	@echo ✅ "Compile minishell\n"
-	@$(CC) $^ -o $@ -lreadline $(INC) $(LIBFT)
+	@$(CC) $^ -o $@ -lreadline $(INC) $(LIBFT) $(PRINTF)
 
 clean_libs:
 	@echo ✅ "Clean libft\n"
 	@make fclean -s -C ./libft
+	@echo ✅ "Clean printf\n"
+	@make fclean -s -C ./printf
 	
 clean: 
 	@echo ✅ "Clean minishell\n"

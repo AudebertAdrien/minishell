@@ -38,14 +38,7 @@ SRCS		= ft_atoi.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
 			ft_strcmp.c \
-			ft_printf.c \
 		  	ft_strlen.c \
-		  	ft_printchar.c \
-		  	ft_printstr.c \
-		  	ft_printnbr_int.c \
-		  	ft_printnbr_unsigned.c \
-		  	ft_printnbr_base.c \
-		  	ft_printnbr_ptr.c \
 
 OBJS		= $(SRCS:.c=.o)
 

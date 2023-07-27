@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_printnbr_unsigned.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 09:32:06 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/24 13:06:58 by mcreus           ###   ########.fr       */
+/*   Created: 2023/02/13 17:22:49 by motoko            #+#    #+#             */
+/*   Updated: 2023/07/27 17:50:45 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_printstr(const char *str)
+int	ft_printnbr_unsigned(size_t n, int count)
 {
-	if (!str)
-		return (ft_printstr("(null)"));
-	return (write(1, str, ft_strlen(str)));
+	if (n > 9)
+		count = ft_printnbr_unsigned(n / 10, count);
+	count += ft_printchar(n % 10 + 48);
+	return (count);
 }
