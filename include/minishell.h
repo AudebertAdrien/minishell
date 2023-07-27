@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/26 17:15:04 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/27 11:24:58 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,6 @@
 # include <dirent.h>
 
 # include "libft.h"
-
-int	g_signal;
-
-typedef enum e_signal{
-	no_signal = 0,
-	signal_default = 1,
-	signal_escape = 10,
-	signal_d = 20,
-	signal_c = 30,
-}t_sigal;
 
 typedef struct s_var
 {
@@ -89,7 +79,11 @@ void	ft_env(char **env);
 int		cmp_char(char c, char *str);
 char	**ft_envcpy(char **env);
 char	*free_and_join(char *s1, char *s2);
-void	ft_exit(char **args);
-void	print_builtin_error(char *arg, char *str);
-int		check_numeric(char *str);
+void	export(char **args, char ***envp);
+int		dup_table(char ***new_env, int *i, int pos, char **envp);
+void	export_pwd(char ***envp, char *newpwd);
+void	print_export(char **envp);
+int		dup_table(char ***new_env, int *i, int pos, char **envp);
+void	add_table(char ***new_env, char *add, int *i, char **envp);
+int		dup_add_table_short(char ***new_env, char *add, int *i, char **envp);
 #endif
