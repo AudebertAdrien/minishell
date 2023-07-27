@@ -14,8 +14,11 @@ SRCS		= main.c \
 		  pwd.c \
 		  env.c \
 		  main_utils.c \
+		  export.c \
+		  export_utils.c \
+		  export_no_args.c \
 
-INC		= -I./include -I./libft -I./printf
+INC		= -I./include -I./libft
 LIBFT		= -Llibft -lft 
 PRINTF		= -Lprintf -lftprintf
 
@@ -33,7 +36,7 @@ create_obj_dir :
 create_libs:
 	@echo ✅ "Compile libft\n"
 	@make re -s -C ./libft
-	@echo ✅ "Compile ft_printf\n"
+	@echo ✅ "Compile printf\n"
 	@make re -s -C ./printf
 
 $(MAIN): $(OBJ)
@@ -43,7 +46,7 @@ $(MAIN): $(OBJ)
 clean_libs:
 	@echo ✅ "Clean libft\n"
 	@make fclean -s -C ./libft
-	@echo ✅ "Clean ft_printf\n"
+	@echo ✅ "Clean printf\n"
 	@make fclean -s -C ./printf
 	
 clean: 

@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/27 13:26:03 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:58:20 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,19 @@ int	find_cmd(char **tab, char **envcpy)
 		ft_env(envcpy);
 	else if (!strcmp(cmd, "ls"))
 		execve("/bin/ls", tab, envcpy);
+	//else if (!strcmp(cmd, "exit"))
+	//	ft_exit(tab);
+	else if (!strcmp(cmd, "export"))
+		print_export(envcpy);
+	else if (!strcmp(cmd, "exit"))
+	{
+		printf("exit\n");
+		return (-1);
+	}
+	else
+	{
+		printf("minishell: %s: command not found\n", cmd);
+		return (1);
+	}
 	return (0);
 }

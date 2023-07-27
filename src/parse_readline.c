@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/12 17:52:42 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:08:18 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	parse_readline(char *str, char **envcpy)
 {
 	char	**tab;
+	int		res;
 
 	tab = ft_split(str, ' ');
-	find_cmd(tab, envcpy);
-	return (0);
+	res = find_cmd(tab, envcpy);
+	return (res);
 }

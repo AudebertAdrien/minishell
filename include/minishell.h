@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/27 13:27:41 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:58:02 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #else
 # define APPLE 0
 #endif
+# define IDLE_PROMT "<minishell>"
 
 # include <stdio.h>
 # include <unistd.h>
@@ -31,21 +32,22 @@
 # include <dirent.h>
 
 # include "libft.h"
-# include "ft_printf.h"
 
 typedef struct s_var
 {
 	char	**env;
+	char	**args;
 	char 	*pwd;
-	int		exit;
+	int		exit_status;
 	char	*str;
+	int		parent_pid;
 }	t_var;
 
 //t_var	g_var;
 
 typedef struct s_path
 {
-	char	*path;
+	char	**path;
 	char	*old_path;
 	char	*new_path;
 }	t_path;
@@ -68,12 +70,19 @@ int	find_cmd(char **tab, char **env);
 int	ft_cd(char **tab, char **env);
 int	ft_pwd(char **args);
 char	*ft_get_env(char **env, char *needle);
-int	ft_get_index(char **env, char *needle);
+int		ft_get_index(char **env, char *needle);
 char	*ft_get_path(char *pwd_line, char *user_line);
 char	*grep_workstation(char *session_line);
 char	*get_relative_path(char *pwd, char *user);
 void	ft_env(char **env);
-int	cmp_char(char c, char *str);
+int		cmp_char(char c, char *str);
 char	**ft_envcpy(char **env);
 char	*free_and_join(char *s1, char *s2);
+void	export(char **args, char ***envp);
+int		dup_table(char ***new_env, int *i, int pos, char **envp);
+void	export_pwd(char ***envp, char *newpwd);
+void	print_export(char **envp);
+int		dup_table(char ***new_env, int *i, int pos, char **envp);
+void	add_table(char ***new_env, char *add, int *i, char **envp);
+int		dup_add_table_short(char ***new_env, char *add, int *i, char **envp);
 #endif

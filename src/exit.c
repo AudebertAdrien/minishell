@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printchar.c                                     :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 15:24:42 by motoko            #+#    #+#             */
-/*   Updated: 2023/07/27 17:50:01 by mcreus           ###   ########.fr       */
+/*   Created: 2023/07/25 10:40:34 by mcreus            #+#    #+#             */
+/*   Updated: 2023/07/27 15:58:15 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "minishell.h"
 
-int	ft_printchar(char c)
+static int	ft_isdigit(int c)
 {
-	return (write(1, &c, 1));
+    if (c >= 48 && c <= 57)
+        return (1);
+    return (0);
 }
