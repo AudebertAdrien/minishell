@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/27 11:24:58 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/28 13:51:50 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,25 @@
 typedef struct s_var
 {
 	char	**env;
-	char	**args;
 	char 	*pwd;
 	int		exit_status;
 	char	*str;
-	int		parent_pid;
+	
 }	t_var;
 
-//t_var	g_var;
+typedef struct s_file {
+	char	*file;
+	char	*eof;
+	int		flag;
+}	t_file;
 
-typedef struct s_path
-{
-	char	**path;
-	char	*old_path;
-	char	*new_path;
-}	t_path;
-
-typedef struct s_char
-{
-	char	*ptr;
-	char	type;
-	struct s_char	*next;
-	struct s_char	*previous;
-}	t_char;
+typedef struct s_cmd {
+	char			*cmd;
+	char			**args;
+	struct s_cmd	*next;
+}	t_cmd;
 
 int		parse_readline(char *str, char **env);
-int		find_cmd(char **tab, char **env);
 int		echo(char **tab);
 int		ft_cd(char **args, char **env);
 char	*display_prompt(char **env);
