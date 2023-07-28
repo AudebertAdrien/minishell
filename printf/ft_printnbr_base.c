@@ -6,11 +6,11 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:45:34 by motoko            #+#    #+#             */
-/*   Updated: 2023/07/24 13:06:33 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/27 17:50:23 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static int	ft_processes_base(unsigned int nbr, char *base, int count)
 {
