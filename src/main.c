@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/30 15:03:58 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/30 17:47:58 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ int	main(int ac, char **av, char **env)
 	pid_t		wait();
 	static char	*str;
 	char		**envcpy;
+	char		*line;
 
 	(void)ac;
 	(void)av;
+	line = NULL;
 	envcpy = ft_envcpy(env);
 	str = (char *)NULL; 
 	while (1)
@@ -30,8 +32,8 @@ int	main(int ac, char **av, char **env)
 			free(str);
 			str = (char *)NULL;
 		}
-		display_prompt(envcpy);
-		str = readline("");
+		line = display_prompt(envcpy);
+		str = readline(line);
 		add_history(str);
 		process = fork();
 		if (str)

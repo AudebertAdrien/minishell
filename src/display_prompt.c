@@ -141,6 +141,21 @@ char	*get_user_line(char **env)
 	return (user_line);
 }
 
+char	*ft_concate(char *usr, char *cluster, char *tilde, char *path)
+{
+	char	*str;
+
+	str = free_and_join(usr, "@");
+	str = free_and_join(str, cluster);
+	str = free_and_join(str, ":");
+	str = free_and_join(str, cluster);
+	str = free_and_join(str, tilde);
+	str = free_and_join(str, path);
+	str = free_and_join(str, "$");
+	str = free_and_join(str, " ");
+	return (str);
+}
+
 char	*display_prompt(char **env)
 {
 	char	*tilde;
@@ -149,7 +164,9 @@ char	*display_prompt(char **env)
 	char	*cluster_line;
 	char	*relative_path_line;
 	char	*user_line;
+	char	*returned_line;
 
+	returned_line = NULL;
 	tilde = "";
     	session_line = ft_get_env(env, "SESSION_MANAGER");
     	pwd_line = ft_get_env(env, "PWD");
@@ -163,7 +180,6 @@ char	*display_prompt(char **env)
 
 	relative_path_line = get_relative_path(pwd_line, user_line);
 
-
-	ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
-	return (NULL);
+	returned_line = ft_concate(user_line, cluster_line, tilde, relative_path_line);
+	return (returned_line);
 }

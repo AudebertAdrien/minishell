@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/30 16:10:54 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/30 17:15:18 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	is_double_quote(char *str)
 {
-	//int	i;
 	int	len;
 
-	//i = 0;
 	len = ft_strlen(str);
 	if (str[0] == '"' && str[len - 1] == '"')
 		return (1);
@@ -73,16 +71,9 @@ int	print_line(char *line)
 			if (getenv(str))
 			{
 				ft_printf("%s", getenv(str));
-				ft_printf("\n");
 				i = i + j;
 			}
 		} 
-		/*
-		else 
-		{
-			ft_putchar_fd(line[i], 1);	
-		}
-		*/
 		i++;
 	}
 
