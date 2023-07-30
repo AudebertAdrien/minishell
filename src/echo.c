@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/27 17:44:13 by motoko           ###   ########.fr       */
+/*   Updated: 2023/07/30 16:10:54 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,32 @@ int	print_line(char *line)
 {
 	int	i;
 	int	j;
-	//int	len;
 	char	*str;
 
 	i = 0;
-	//len = 0;
 	while (line[i])
 	{
 		if (line[i] == '$')
 		{
-			j = 0;
-			i++;
-			while (line[i + j] && (line[i + j] != ' ' || line[i + j] != '"'))
-			{
-//				ft_putchar_fd(line[i + j], 1);
+			j = 1;
+			while (line[i + j] && (line[i + j] != ' ' && line[i + j] != '"'))
 				j++;
-			}
 			if (line[i + j] == '"')
 				j--;
-			//len = sizeof_line(line,i ,j);
-
-			str = ft_substr(line, i, i + j);
-			if (str)
-				printf("1 %s\n", str);
-				//printf("2 %s\n", getenv(str));
+			str = ft_substr(line, i + 1, j);
+			if (getenv(str))
+			{
+				ft_printf("%s", getenv(str));
+				ft_printf("\n");
+				i = i + j;
+			}
+		} 
+		/*
+		else 
+		{
+			ft_putchar_fd(line[i], 1);	
 		}
+		*/
 		i++;
 	}
 
@@ -97,10 +98,8 @@ int	echo(char **tab, char **env)
 	while (tab[i])
 	{
 		if (is_double_quote(tab[i]))
-		{
 			print_line(tab[i]);	
-		}
-		//ft_putstr_fd(tab[i], 1);
+
 		if (ft_strncmp(tab[1], "-n", 3))
 			ft_putchar_fd('\n', 1);
 		i++;
