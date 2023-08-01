@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/30 17:15:18 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/01 15:41:34 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ int	print_line(char *line)
 	int	i;
 	int	j;
 	char	*str;
+	//int	len;
 
 	i = 0;
+	//len = ft_strlen(line);
 	while (line[i])
 	{
 		if (line[i] == '$')
@@ -74,26 +76,36 @@ int	print_line(char *line)
 				i = i + j;
 			}
 		} 
+		else
+		{
+			if (!(line[i] == '"'))
+				ft_putchar_fd(line[i], 1);
+		}
 		i++;
 	}
 
 	return (0);
 }
 
-int	echo(char **tab, char **env)
+int	echo(char *orig_str, char **tab, char **env)
 {
 	int	i;
+	int	is_return_line;
 
+	(void)orig_str;
 	i = 1;
+	is_return_line = 1;
 	(void)env;
+	if (!ft_strncmp(tab[1], "-n", 3))
+		is_return_line = 0;
 	while (tab[i])
 	{
 		if (is_double_quote(tab[i]))
 			print_line(tab[i]);	
-
-		if (ft_strncmp(tab[1], "-n", 3))
-			ft_putchar_fd('\n', 1);
+		ft_putchar_fd(' ', 1);
 		i++;
 	}
+	if (is_return_line)
+		ft_putchar_fd('\n', 1);
 	return (0);
 }

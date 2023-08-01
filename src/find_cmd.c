@@ -6,19 +6,19 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/27 17:58:20 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/01 15:33:50 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	find_cmd(char **tab, char **envcpy)
+int	find_cmd(char *orig_str, char **tab, char **envcpy)
 {
 	char	*cmd;
 
 	cmd = tab[0];
 	if (!strcmp(cmd, "echo"))
-		echo(tab, envcpy);
+		echo(orig_str, tab, envcpy);
 	else if (!strcmp(cmd, "cd"))
 		ft_cd(tab, envcpy);
 	else if (!strcmp(cmd, "pwd"))

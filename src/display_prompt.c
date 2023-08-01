@@ -10,6 +10,13 @@
 
 #include "minishell.h"
 
+char	is_home_or_root(char *pwd_line, char *user_line)
+{
+	if (ft_strnstr(pwd_line, user_line, ft_strlen(pwd_line)))
+		return (1);
+	return (0);
+}
+
 int	ft_get_index(char **env, char *needle)
 {
 	int		i;
@@ -89,7 +96,7 @@ char	*grep_workstation(char *session_line)
 	{
 		if (session_line[i] == '/')
 		{
-			while (cmp_char(session_line[i + j], ":."))
+			while (ft_cmp_char(session_line[i + j], ":."))
 				j++;
 			return (ft_substr(session_line, i + 1, j - 1));
 		}
@@ -98,12 +105,6 @@ char	*grep_workstation(char *session_line)
 	return (NULL);
 }
 
-char	is_home_or_root(char *pwd_line, char *user_line)
-{
-	if (ft_strnstr(pwd_line, user_line, ft_strlen(pwd_line)))
-		return (1);
-	return (0);
-}
 
 char	*get_relative_path(char *pwd_line, char *user_line)
 {
@@ -141,7 +142,7 @@ char	*get_user_line(char **env)
 	return (user_line);
 }
 
-char	*ft_concate(char *usr, char *cluster, char *tilde, char *path)
+char	*ft_join_all_part(char *usr, char *cluster, char *tilde, char *path)
 {
 	char	*str;
 
@@ -180,6 +181,6 @@ char	*display_prompt(char **env)
 
 	relative_path_line = get_relative_path(pwd_line, user_line);
 
-	returned_line = ft_concate(user_line, cluster_line, tilde, relative_path_line);
+	returned_line = ft_join_all_part(user_line, cluster_line, tilde, relative_path_line);
 	return (returned_line);
 }
