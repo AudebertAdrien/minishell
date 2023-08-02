@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/27 17:30:00 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/29 18:27:03 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int ac, char **av, char **env)
 	pid_t		wait();
 	static char	*str;
 	char		**envcpy;
-	int			res;
 
 	(void)ac;
 	(void)av;
@@ -27,7 +26,6 @@ int	main(int ac, char **av, char **env)
 	
 	while (1)
 	{
-		printf("\n%d\n", res);
 		if (str)
 		{
 			free(str);
@@ -42,7 +40,7 @@ int	main(int ac, char **av, char **env)
 			if (process > 0)
 				wait(NULL);
 			if (process == 0)
-				res = parse_readline(str, envcpy);
+				parse_readline(str, envcpy);
 		}
 	}
 	return (0);

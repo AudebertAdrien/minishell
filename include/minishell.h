@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/27 11:24:58 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/29 18:34:33 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ typedef struct s_var
 
 //t_var	g_var;
 
+typedef struct s_env
+{
+	char			*var;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
+
 typedef struct s_path
 {
 	char	**path;
@@ -60,7 +67,6 @@ typedef struct s_char
 	struct s_char	*previous;
 }	t_char;
 
-int		parse_readline(char *str, char **env);
 int		find_cmd(char **tab, char **env);
 int		echo(char **tab);
 int		ft_cd(char **args, char **env);
@@ -79,11 +85,13 @@ void	ft_env(char **env);
 int		cmp_char(char c, char *str);
 char	**ft_envcpy(char **env);
 char	*free_and_join(char *s1, char *s2);
-void	export(char **args, char ***envp);
+void	export(char **args, char **envp);
 int		dup_table(char ***new_env, int *i, int pos, char **envp);
 void	export_pwd(char ***envp, char *newpwd);
 void	print_export(char **envp);
 int		dup_table(char ***new_env, int *i, int pos, char **envp);
 void	add_table(char ***new_env, char *add, int *i, char **envp);
 int		dup_add_table_short(char ***new_env, char *add, int *i, char **envp);
+void	ft_tabfree(char **tab);
+char	**cmd_exit(char **args, char **env);
 #endif
