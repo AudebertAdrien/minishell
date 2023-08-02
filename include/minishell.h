@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/29 18:34:33 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/02 13:33:22 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,18 @@ typedef struct s_char
 	struct s_char	*previous;
 }	t_char;
 
+int	parse_readline(char *str, char **env);
+int	find_cmd(char **tab, char **env);
+int	echo(char **tab, char **env);
+int	ft_cd(char **args, char **env);
 int		find_cmd(char **tab, char **env);
 int		echo(char **tab);
 int		ft_cd(char **args, char **env);
 char	*display_prompt(char **env);
+int	parse_readline(char *str, char **env);
+int	find_cmd(char **tab, char **env);
+int	ft_cd(char **tab, char **env);
+int	ft_pwd(char **args);
 int		parse_readline(char *str, char **env);
 int		find_cmd(char **tab, char **env);
 int		echo(char **tab);
