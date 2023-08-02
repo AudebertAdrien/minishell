@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/31 15:15:28 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/01 17:34:40 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	main(int ac, char **av, char **env)
 {
 	pid_t		process;
 	pid_t		wait();
-	static char	*str;
 	char		**envcpy;
 	char		*line;
+	static char	*str;
 
 	(void)ac;
 	(void)av;

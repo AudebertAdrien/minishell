@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/01 15:42:47 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/01 17:18:49 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #else
 # define APPLE 0
 #endif
-# define IDLE_PROMT "<minishell>"
 
 # include <stdio.h>
 # include <unistd.h>

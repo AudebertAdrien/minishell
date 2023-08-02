@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/01 15:41:34 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/01 15:44:38 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,13 @@ int	find_char(char *str, char c)
 	return (0);
 }
 
-/*
-int	sizeof_line(char *line, int start, int len)
-{
-	int	i;
-
-	i = 0;
-	while (line[start + i] && start < len)
-	{
-		if (line[start + i] == ' ')
-
-	}
-	return (0);
-}
-*/
-
 int	print_line(char *line)
 {
 	int	i;
 	int	j;
 	char	*str;
-	//int	len;
 
 	i = 0;
-	//len = ft_strlen(line);
 	while (line[i])
 	{
 		if (line[i] == '$')
