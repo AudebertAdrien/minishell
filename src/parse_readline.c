@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/03 12:09:07 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/03 13:53:24 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	**parse_this_fucking_quote(char *str)
 			j = 1;
 			while (str[i + j] != '"')
 				j++;
-
 			/* add a condition when "t""x""t" join everything when double
 			 * quote are side by side */
 			tab[k++] = ft_substr(str, i + 1, j - 1);
