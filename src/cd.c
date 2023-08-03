@@ -6,7 +6,11 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/08/02 13:39:45 by mcreus           ###   ########.fr       */
+=======
+/*   Updated: 2023/07/31 14:00:23 by motoko           ###   ########.fr       */
+>>>>>>> 70cb27f69df80fc1736afd500a17ea17c11bd871
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +94,11 @@ int	ft_cd(char **args, char **env)
 		env[pwd_i] = new_pwd;
 		chdir(ft_substr(new_pwd, 4, ft_strlen(new_pwd)));
 	}
+	else if (!ft_strcmp(args[1], "/"))
+            ft_printf ("Cannot open root directory with '%s'\n", args[1]);
 	else
 	{
-		//struct dirent *pDirent;
+	//struct dirent *pDirent;
         DIR *pDir;
 
         pDir = opendir (args[1]);
