@@ -6,11 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/29 18:28:06 by mcreus           ###   ########.fr       */
-=======
-/*   Updated: 2023/08/02 18:02:58 by motoko           ###   ########.fr       */
->>>>>>> 70cb27f69df80fc1736afd500a17ea17c11bd871
+/*   Updated: 2023/08/03 12:09:07 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +85,6 @@ char	**parse_this_fucking_quote(char *str)
 int	parse_readline(char *str, char **envcpy)
 {
 	char	**tab;
-<<<<<<< HEAD
-
-	tab = ft_split(str, ' ');
-	find_cmd(tab, envcpy);
-	return (0);
-}
-=======
 	int	res;
 
 	tab = ft_split(str, ' ');
@@ -103,4 +92,3 @@ int	parse_readline(char *str, char **envcpy)
 	res = find_cmd(str, tab, envcpy);
 	return (res);
 }
->>>>>>> 70cb27f69df80fc1736afd500a17ea17c11bd871

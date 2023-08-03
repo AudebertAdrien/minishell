@@ -6,11 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/08/02 13:33:47 by mcreus           ###   ########.fr       */
-=======
-/*   Updated: 2023/08/01 17:39:36 by motoko           ###   ########.fr       */
->>>>>>> 70cb27f69df80fc1736afd500a17ea17c11bd871
+/*   Updated: 2023/08/03 12:09:37 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +27,8 @@ int	find_cmd(char *orig_str, char **tab, char **envcpy)
 		ft_env(envcpy);
 	else if (!strcmp(cmd, "ls"))
 		execve("/bin/ls", tab, envcpy);
-<<<<<<< HEAD
-=======
 	else if (!strcmp(cmd, "export"))
 		print_export(envcpy);
->>>>>>> 70cb27f69df80fc1736afd500a17ea17c11bd871
 	else if (!strcmp(cmd, "exit"))
 		cmd_exit(tab, envcpy);
 	else if (!strcmp(cmd, "export") && !tab[1])
