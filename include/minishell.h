@@ -70,25 +70,7 @@ typedef struct s_char
 	struct s_char	*previous;
 }	t_char;
 
-<<<<<<< HEAD
-int		parse_readline(char *str, char **env);
-int		find_cmd(char **tab, char **env);
-int		echo(char **tab, char **env);
-int		ft_cd(char **args, char **env);
-int		find_cmd(char **tab, char **env);
-int		ft_cd(char **args, char **env);
 char	*display_prompt(char **env);
-int		parse_readline(char *str, char **env);
-int		find_cmd(char **tab, char **env);
-int		ft_cd(char **tab, char **env);
-int		ft_pwd(char **args);
-int		parse_readline(char *str, char **env);
-int		find_cmd(char **tab, char **env);
-int		ft_cd(char **tab, char **env);
-int		ft_pwd(char **args);
-=======
-char	*display_prompt(char **env);
->>>>>>> 70cb27f69df80fc1736afd500a17ea17c11bd871
 char	*ft_get_env(char **env, char *needle);
 char	*ft_get_path(char *pwd_line, char *user_line);
 char	*grep_workstation(char *session_line);
@@ -112,33 +94,5 @@ void	export_pwd(char ***envp, char *newpwd);
 void	print_export(char **envp);
 int	dup_table(char ***new_env, int *i, int pos, char **envp);
 void	add_table(char ***new_env, char *add, int *i, char **envp);
-<<<<<<< HEAD
-int		dup_add_table_short(char ***new_env, char *add, int *i, char **envp);
-void	ft_tabfree(char **tab);
-char	**cmd_exit(char **args, char **env);
-
-typedef struct s_cmd {
-	char	*cmd;
-	char	**args;
-	struct s_cmd	*next;
-}	t_cmd;
-
-typedef struct s_file {
-	char *file;
-	char *end_of_file;
-	int		flag;
-}	t_file;
-
-typedef struct s_line {
-	t_file	input;
-	t_file	output;
-	t_cmd	*cmd;
-	int		loop;
-}	t_line;
-
-
-#endif
-=======
 int	dup_add_table_short(char ***new_env, char *add, int *i, char **envp);
 #endif
->>>>>>> 70cb27f69df80fc1736afd500a17ea17c11bd871
