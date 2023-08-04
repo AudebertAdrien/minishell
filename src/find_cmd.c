@@ -6,20 +6,20 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/28 17:03:55 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/04 09:49:16 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	find_cmd(char **tab, char **envcpy)
+int	find_cmd(char *orig_str, char **tab, char **envcpy)
 {
 	char	*cmd;
-
+	
 	cmd = tab[0];
 	if (!strcmp(cmd, "echo"))
-		echo(tab);
-	if (!strcmp(cmd, "cd"))
+		echo(orig_str, tab, envcpy);
+	else if (!strcmp(cmd, "cd"))
 		ft_cd(tab, envcpy);
 	if (!strcmp(cmd, "pwd"))
 		ft_pwd(tab);
@@ -27,12 +27,18 @@ int	find_cmd(char **tab, char **envcpy)
 		ft_env(envcpy);
 	if (!strcmp(cmd, "ls"))
 		execve("/bin/ls", tab, envcpy);
-	if (!strcmp(cmd, "export"))
+	else if (!strcmp(cmd, "export"))
+		print_export(envcpy);
+	//else if (!strcmp(cmd, "exit"))
+	//	cmd_exit(tab, envcpy);
+	else if (!strcmp(cmd, "export") && !tab[1])
+		print_export(envcpy);
+	else if (!strcmp(cmd, "export") && tab[1])
+		export(tab, envcpy);
+	else
 	{
-		if (tab[1])
-			export(tab[1], envcpy);
-		else
-			print_export(envcpy);
+		printf("minishell: command not found : %s\n", cmd);
+		return (1);
 	}
 	return (0);
 }

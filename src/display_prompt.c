@@ -10,6 +10,13 @@
 
 #include "minishell.h"
 
+char	is_home_or_root(char *pwd_line, char *user_line)
+{
+	if (ft_strnstr(pwd_line, user_line, ft_strlen(pwd_line)))
+		return (1);
+	return (0);
+}
+
 int	ft_get_index(char **env, char *needle)
 {
 	int		i;
@@ -89,7 +96,7 @@ char	*grep_workstation(char *session_line)
 	{
 		if (session_line[i] == '/')
 		{
-			while (cmp_char(session_line[i + j], ":."))
+			while (ft_cmp_char(session_line[i + j], ":."))
 				j++;
 			return (ft_substr(session_line, i + 1, j - 1));
 		}
@@ -98,12 +105,6 @@ char	*grep_workstation(char *session_line)
 	return (NULL);
 }
 
-char	is_home_or_root(char *pwd_line, char *user_line)
-{
-	if (ft_strnstr(pwd_line, user_line, ft_strlen(pwd_line)))
-		return (1);
-	return (0);
-}
 
 char	*get_relative_path(char *pwd_line, char *user_line)
 {
@@ -115,7 +116,12 @@ char	*get_relative_path(char *pwd_line, char *user_line)
 		return (str);
 	}
 	else 
-		return (pwd_line);
+	{
+		str = ft_substr(pwd_line, 4, ft_strlen(pwd_line));
+		if (!str[0])
+			str = "/";
+		return (str);
+	}
 }
 
 char	*get_user_line(char **env)
@@ -136,43 +142,20 @@ char	*get_user_line(char **env)
 	return (user_line);
 }
 
-/*
-char	*get_user_line(char **env, char *ref)
+char	*ft_join_all_part(char *usr, char *cluster, char *tilde, char *path)
 {
-	int	i;
-	char	*line;
+	char	*str;
 
-	i = 0;
-    	line = ft_get_env(env, ref);
-	if (!line)
-		line = "";
-	while (line[i])
-	{
-		if (line[i] == '=')
-			return (ft_substr(line, i + 1, ft_strlen(line)));
-		i++;
-	}
-	return (user_line);
+	str = free_and_join(usr, "@");
+	str = free_and_join(str, cluster);
+	str = free_and_join(str, ":");
+	str = free_and_join(str, cluster);
+	str = free_and_join(str, tilde);
+	str = free_and_join(str, path);
+	str = free_and_join(str, "$");
+	str = free_and_join(str, " ");
+	return (str);
 }
-
-char	*get_session_line(char **env)
-{
-	int	i;
-	char	*line;
-
-	i = 0;
-    	line = ft_get_env(env, "SESSION_MANAGER");
-	if (!line)
-		line = "";
-	while (line[i])
-	{
-		if (line[i] == '/')
-			return (ft_substr(line, i + 1, ));
-		i++;
-	}
-	return (user_line);
-}
-*/
 
 char	*display_prompt(char **env)
 {
@@ -182,7 +165,9 @@ char	*display_prompt(char **env)
 	char	*cluster_line;
 	char	*relative_path_line;
 	char	*user_line;
+	char	*returned_line;
 
+	returned_line = NULL;
 	tilde = "";
     	session_line = ft_get_env(env, "SESSION_MANAGER");
     	pwd_line = ft_get_env(env, "PWD");
@@ -196,9 +181,6 @@ char	*display_prompt(char **env)
 
 	relative_path_line = get_relative_path(pwd_line, user_line);
 
-	if (!relative_path_line)
-		relative_path_line = "";
-
-	ft_printf("%s@%s:%s%s$ ", user_line, cluster_line, tilde, relative_path_line);
-	return (NULL);
+	returned_line = ft_join_all_part(user_line, cluster_line, tilde, relative_path_line);
+	return (returned_line);
 }

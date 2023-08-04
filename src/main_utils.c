@@ -6,13 +6,13 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
-/*   Updated: 2023/07/20 15:16:21 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/01 15:39:39 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	cmp_char(char c, char *str)
+int	ft_cmp_char(char c, char *str)
 {
 	int	i;
 
