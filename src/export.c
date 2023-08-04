@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 09:55:21 by mcreus            #+#    #+#             */
-/*   Updated: 2023/08/04 09:49:00 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/04 11:15:05 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	export_pwd(char **envp, char *newpwd)
 	}
 }
 
-void	export(char **args, char **envp)
 void	export(char **args, char **envp)
 {
 	int		i;

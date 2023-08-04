@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/04 09:49:29 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/04 11:31:31 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int	main(int ac, char **av, char **env)
 			}
 		}
 	}
-	rl_clear_history();
+	clear_history();
 	return (0);
 }
