@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/04 09:48:25 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/04 10:53:17 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 # include "libft.h"
 # include "ft_printf.h"
-/*
+
 typedef struct s_var
 {
 	char	**env;
@@ -77,4 +77,5 @@ void	print_export(char **envp);
 int	dup_table(char ***new_env, int *i, int pos, char **envp);
 void	add_table(char ***new_env, char *add, int *i, char **envp);
 int	dup_add_table_short(char ***new_env, char *add, int *i, char **envp);
+
 #endif
