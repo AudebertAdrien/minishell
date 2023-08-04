@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/07/28 13:54:26 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:03:55 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,20 @@ int	find_cmd(char **tab, char **envcpy)
 	cmd = tab[0];
 	if (!strcmp(cmd, "echo"))
 		echo(tab);
-	else if (!strcmp(cmd, "cd"))
+	if (!strcmp(cmd, "cd"))
 		ft_cd(tab, envcpy);
-	else if (!strcmp(cmd, "pwd"))
+	if (!strcmp(cmd, "pwd"))
 		ft_pwd(tab);
-	else if (!strcmp(cmd, "env"))
+	if (!strcmp(cmd, "env"))
 		ft_env(envcpy);
-	else if (!strcmp(cmd, "ls"))
+	if (!strcmp(cmd, "ls"))
 		execve("/bin/ls", tab, envcpy);
-	else if (!strcmp(cmd, "export"))
-		print_export(envcpy);
+	if (!strcmp(cmd, "export"))
+	{
+		if (tab[1])
+			export(tab[1], envcpy);
+		else
+			print_export(envcpy);
+	}
 	return (0);
 }

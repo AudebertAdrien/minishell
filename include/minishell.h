@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/07/28 13:51:50 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:04:08 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <sys/types.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
 # include <dirent.h>
 # include <stdlib.h>
 # include <errno.h>
 # include <dirent.h>
+# include <string.h>
 
 # include "libft.h"
 
@@ -72,7 +75,7 @@ void	ft_env(char **env);
 int		cmp_char(char c, char *str);
 char	**ft_envcpy(char **env);
 char	*free_and_join(char *s1, char *s2);
-void	export(char **args, char ***envp);
+void	export(char **args, char **envp);
 int		dup_table(char ***new_env, int *i, int pos, char **envp);
 void	export_pwd(char ***envp, char *newpwd);
 void	print_export(char **envp);
