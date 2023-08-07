@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/01 17:39:36 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/03 15:13:15 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	find_cmd(char *orig_str, char **tab, char **envcpy)
 {
 	char	*cmd;
-
+	
 	cmd = tab[0];
 	if (!strcmp(cmd, "echo"))
 		echo(orig_str, tab, envcpy);
@@ -29,11 +29,12 @@ int	find_cmd(char *orig_str, char **tab, char **envcpy)
 		execve("/bin/ls", tab, envcpy);
 	else if (!strcmp(cmd, "export"))
 		print_export(envcpy);
-	else if (!strcmp(cmd, "exit"))
-	{
-		printf("exit\n");
-		return (-1);
-	}
+	//else if (!strcmp(cmd, "exit"))
+	//	cmd_exit(tab, envcpy);
+	else if (!strcmp(cmd, "export") && !tab[1])
+		print_export(envcpy);
+	else if (!strcmp(cmd, "export") && tab[1])
+		export(tab, envcpy);
 	else
 	{
 		printf("minishell: command not found : %s\n", cmd);

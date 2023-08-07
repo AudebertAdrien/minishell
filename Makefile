@@ -14,6 +14,7 @@ SRCS		= main.c \
 		  pwd.c \
 		  env.c \
 		  main_utils.c \
+		  exit.c \
 		  export.c \
 		  export_utils.c \
 		  export_no_args.c \
@@ -62,4 +63,3 @@ re: fclean all
 .PHONY: all clean fclean re \
 	create_directory \
 	clean_lib \
-

@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/07 11:28:53 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/07 12:03:28 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # include <dirent.h>
 
 # include "libft.h"
-# include "printf.h"
-
+# include "ft_printf.h"
+/*
 typedef struct s_var
 {
 	char	**env;
@@ -44,6 +44,13 @@ typedef struct s_var
 }	t_var;
 
 //t_var	g_var;
+
+typedef struct s_env
+{
+	char			*var;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
 
 typedef struct s_path
 {
@@ -59,13 +66,22 @@ typedef struct s_char
 	struct s_char	*next;
 	struct s_char	*previous;
 }	t_char;
-/*
-typedef stuct s_vars
+*/
+
+typedef struct s_cmd
 {
 	char	*cmd;
-	char	*type;
-}	t_vars;
-*/
+	char	**args;
+	struct s_cmd	*next;
+	struct s_cmd	*previous;
+}	t_cmd;
+
+typedef struct s_line {
+	char	*input;
+	char	*output;
+	t_cmd	*cmd;
+	int		loop;
+}	t_line;
 
 char	*display_prompt(char **env);
 char	*ft_get_env(char **env, char *needle);
@@ -76,18 +92,17 @@ char	*free_and_join(char *s1, char *s2);
 char	**ft_envcpy(char **env);
 
 void	ft_env(char **env);
-int		parse_readline(char *str, char **env);
-int		find_cmd(char *str, char **tab, char **env);
-int		echo(char *orig_str, char **tab, char **env);
-int		ft_cd(char **args, char **env);
-int		parse_readline(char *str, char **env);
-int		ft_pwd(char **args);
-int		ft_get_index(char **env, char *needle);
-int		ft_cmp_char(char c, char *str);
+int	parse_readline(char *str, char **env);
+int	find_cmd(char *str, char **tab, char **env);
+int	echo(char *orig_str, char **tab, char **env);
+int	ft_cd(char **args, char **env);
+int	ft_pwd(char **args);
+int	ft_get_index(char **env, char *needle);
+int	ft_cmp_char(char c, char *str);
 
-void	export(char **args, char ***envp);
-int		dup_table(char ***new_env, int *i, int pos, char **envp);
-void	export_pwd(char ***envp, char *newpwd);
+void	export(char **args, char **envp);
+int	dup_table(char ***new_env, int *i, int pos, char **envp);
+void	export_pwd(char **envp, char *newpwd);
 void	print_export(char **envp);
 int		dup_table(char ***new_env, int *i, int pos, char **envp);
 void	add_table(char ***new_env, char *add, int *i, char **envp);

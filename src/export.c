@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 09:55:21 by mcreus            #+#    #+#             */
-/*   Updated: 2023/07/27 13:12:04 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/03 15:12:23 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,28 @@ static char	**dup_add_table(char **envp, char *add, int pos)
 	return (new_env);
 }
 
-void	export_pwd(char ***envp, char *newpwd)
+void	export_pwd(char **envp, char *newpwd)
 {
 	int		pos;
 
-	pos = ft_get_index(*envp, newpwd);
+	pos = ft_get_index(envp, newpwd);
 	if (pos != -1)
 	{
-		*envp = dup_add_table(*envp, newpwd, pos);
+		envp = dup_add_table(envp, newpwd, pos);
 	}
 }
 
-void	export(char **args, char ***envp)
+void	export(char **args, char **envp)
 {
 	int		i;
 	int		pos;
 
-	if (*envp == 0)
+	if (envp == 0)
 		return ;
 	i = 0;
 	while (args[++i])
 	{
-		pos = ft_get_index(*envp, args[i]);
-		*envp = dup_add_table(*envp, args[i], pos);
+		pos = ft_get_index(envp, args[i]);
+		envp = dup_add_table(envp, args[i], pos);
 	}
 }
