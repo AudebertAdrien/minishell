@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
-/*   Updated: 2023/08/01 15:39:39 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/07 18:13:50 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,14 @@ char    *free_and_join(char *s1, char *s2)
     tmp = ft_strjoin(s1, s2);
     free(s1);
     return (tmp);
+}
+
+int free_tabs(char **env)
+{
+    int i;
+
+    i = 0;
+    while (env[i])
+        free(env[i++]);
+    return (0);
 }

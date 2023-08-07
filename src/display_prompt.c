@@ -37,7 +37,7 @@ int	ft_get_index(char **env, char *needle)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 char	*ft_get_env(char **env, char *needle)
