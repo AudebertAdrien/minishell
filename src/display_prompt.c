@@ -63,24 +63,6 @@ char	*ft_get_env(char **env, char *needle)
 	return (NULL);
 }
 
-char	*ft_get_path(char *pwd_line, char *user_line)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (pwd_line[i])
-	{
-		j = 0;
-		while (user_line[j] && (pwd_line[i + j] == user_line[j]))
-			j++;
-		if (user_line[j] == '\0')
-			return (&pwd_line[i + j]);
-		i++;
-	}
-	return (NULL);
-}
-
 char	*grep_workstation(char *session_line)
 {
 	int		i;
@@ -105,6 +87,28 @@ char	*grep_workstation(char *session_line)
 	return (NULL);
 }
 
+char	*ft_get_path(char *pwd_line, char *user_line)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (pwd_line[i])
+	{
+		j = 0;
+		while (user_line[j] && (pwd_line[i + j] == user_line[j]))
+			j++;
+		if (user_line[j] == '\0')
+		{
+			if (pwd_line[i + j] == '\0')
+				return (&pwd_line[i + j]);
+			else
+				return (ft_substr(&pwd_line[i + j], 1, ft_strlen(&pwd_line[i + j])));
+		}
+		i++;
+	}
+	return (NULL);
+}
 
 char	*get_relative_path(char *pwd_line, char *user_line)
 {

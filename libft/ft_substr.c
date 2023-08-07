@@ -6,24 +6,11 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:38:29 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/04/10 14:41:17 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:40:46 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-	DESCRIPTION
-	ft_substr get a part of the string s, that begin with 'start' 
-	and ends with size 'len'
-	if the length is greater than the difference in the rest of 
-	the string, it means that the length exceeds and must be reduced	
-
-	RETURN VALUE
-	if the lenght is greater than the length of the string,
-	return a pointer to null else return a pointer
-*/
-
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
