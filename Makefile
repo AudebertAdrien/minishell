@@ -18,6 +18,7 @@ SRCS		= main.c \
 		  export.c \
 		  export_utils.c \
 		  export_no_args.c \
+		  unset.c \
 
 INC		= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 

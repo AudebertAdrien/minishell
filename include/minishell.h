@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/07 18:31:47 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/08 14:08:09 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,6 @@ int		ft_cmp_char(char c, char *str);
 void	export(char **args, char **envp);
 void	print_export(char **envp);
 int    free_tabs(char **env);
+
+void	unset(char **args, char **envp);
 #endif

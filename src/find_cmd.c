@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/07 17:45:22 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/08 14:07:53 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	find_cmd(char *orig_str, char **tab, char **envcpy)
 	//	cmd_exit(tab, envcpy);
 	else if (!strcmp(cmd, "export"))
 		export(tab, envcpy);
-	//else if (!strcmp(cmd, "unset"))
-		//unset(envcpy, tab);
+	else if (!strcmp(cmd, "unset"))
+		unset(envcpy, tab);
 	else
 	{
 		printf("minishell: command not found : %s\n", cmd);
