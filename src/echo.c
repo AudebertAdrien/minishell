@@ -6,11 +6,12 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/01 15:44:38 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/08 14:41:11 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 int	is_double_quote(char *str)
 {
