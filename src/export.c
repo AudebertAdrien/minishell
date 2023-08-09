@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 09:55:21 by mcreus            #+#    #+#             */
-/*   Updated: 2023/08/08 11:03:15 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/09 11:38:48 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,25 @@ static int	len_env(char *str)
 	return (i);
 }
 
-char    **ft_envcpy2(char **env, char *str)
+char    **ft_duplicate_env(char **env, char *str)
 {
-    char    **envcpy2;
+    char    **tmp;
     int     i;
 
     i = 0;
     while (env[i])
         i++;
-    envcpy2 = (char **)malloc(sizeof(char *) * (i + 2));
+    tmp = (char **)malloc(sizeof(char *) * (i + 2));
     i = 0;
     while (env[i])
     {
-        envcpy2[i] = ft_strdup(env[i]);
+        tmp[i] = env[i];
         i++;
     }
-	while (str[i])
-	{
-		envcpy2[i] = ft_strdup(str);
+	tmp[i] = ft_strdup(str);
 		i++;
-	}
-    envcpy2[i] = NULL;
-    return (envcpy2);
+    tmp[i] = NULL;
+    return (tmp);
 }
 
 void	export(char **args, char **env)
@@ -58,8 +55,8 @@ void	export(char **args, char **env)
 		args_i = ft_get_index(env, line);
 		if (args_i == -1)
 		{
-			new_env = ft_envcpy2(env, args[1]);
-			env = new_env;
+			new_env = ft_duplicate_env(env, args[1]);
+			vars.envcpy = new_env;
 		}
 		else
 		{

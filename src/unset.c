@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:17:51 by mcreus            #+#    #+#             */
-/*   Updated: 2023/08/08 14:15:26 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/09 12:51:36 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	unset(char **args, char **env)
 		args_i = ft_get_index(env, line);
 		if (args_i)
 		{
-			free(env[args_i]);
-			env[args_i] = NULL;
+			free(vars.envcpy[args_i]);
+			vars.envcpy[args_i] = NULL;
 		}
 	}
 	else
