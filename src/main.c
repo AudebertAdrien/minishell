@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/09 16:56:50 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/09 17:00:49 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	launch()
 	ft_printf("\t######################################################################\n\n");
 }
 
-t_vars vars;
+t_vars	vars;
 
 int	main(int ac, char **av, char **env)
 {
