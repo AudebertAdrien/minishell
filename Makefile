@@ -13,10 +13,9 @@ SRCS		= main.c \
 		  cd.c \
 		  pwd.c \
 		  env.c \
-		  main_utils.c \
+		  utils.c \
 		  exit.c \
 		  export.c \
-		  export_utils.c \
 		  export_no_args.c \
 
 INC		= -I./include -I./libft -I./printf

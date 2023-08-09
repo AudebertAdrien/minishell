@@ -17,52 +17,6 @@ char	is_home_or_root(char *pwd_line, char *user_line)
 	return (0);
 }
 
-int	ft_get_index(char **env, char *needle)
-{
-	int		i;
-	int		j;
-	int		len;
-	char		*haystack;
-
-	i = 0;
-	len = ft_strlen(needle);
-	env[i] = (char *)malloc(sizeof(char) * (len + 1));
-	while (env[i])
-	{
-		haystack = env[i];
-		j = 0;
-		while (needle[j] && (haystack[j] == needle[j]) && j < len)
-			j++;
-		if (needle[j] == '\0')
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-char	*ft_get_env(char **env, char *needle)
-{
-	char		*haystack;
-	int		i;
-	int		j;
-	int		len;
-
-	i = 0;
-	len = ft_strlen(needle);
-	env[i] = (char *)malloc(sizeof(char) * (len + 1));
-	while (env[i])
-	{
-		haystack = env[i];
-		j = 0;
-		while (needle[j] && (haystack[j] == needle[j]) && j < len)
-			j++;
-		if (needle[j] == '\0')
-			return (env[i]);
-		i++;
-	}
-	return (NULL);
-}
-
 char	*grep_workstation(char *session_line)
 {
 	int		i;

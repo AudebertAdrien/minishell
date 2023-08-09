@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/08 11:24:15 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/09 10:25:20 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,13 @@ char	*ft_remove_end_slash(char *str)
 	return (str);
 }
 
-int	parse_readline(char *str, char **envcpy)
+int	parse_readline(char *str)
 {
 	char	**tab;
 	int	res;
 
-	//tab = ft_split(str, ' ');
 	str = ft_remove_end_slash(str);
 	tab = parse_this_fucking_quote(str);	
-	res = find_cmd(str, tab, envcpy);
+	res = find_cmd(tab);
 	return (res);
 }

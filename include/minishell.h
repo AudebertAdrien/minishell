@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/08 14:42:27 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/09 10:25:34 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ char	*ft_get_path(char *pwd_line, char *user_line);
 char	*grep_workstation(char *session_line);
 char	*get_relative_path(char *pwd, char *user);
 char	*free_and_join(char *s1, char *s2);
-char	**ft_envcpy(char **env);
+int	**ft_envcpy(char **env);
 
 void	ft_env(char **env);
-int		parse_readline(char *str, char **env);
-int		find_cmd(char *str, char **tab, char **env);
-int		echo(char *orig_str, char **tab, char **env);
+int		parse_readline(char *str);
+int		find_cmd(char **tab);
+int		echo(char **tab, char **env);
 int		ft_cd(char **args, char **env);
 int		ft_pwd(char **args);
 int		ft_get_index(char **env, char *needle);

@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/08 14:40:36 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/09 09:51:57 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	line = NULL;
 	str = (char *)NULL;
-	vars.envcpy = ft_envcpy(env);
+	ft_envcpy(env);
 	launch();
 	while (1)
 	{
@@ -59,7 +59,7 @@ int	main(int ac, char **av, char **env)
 				wait(NULL);
 			if (process == 0)
 			{
-				parse_readline(str, vars.envcpy);
+				parse_readline(str);
 			}
 		}
 	}
