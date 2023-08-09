@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/09 10:24:29 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:52:59 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,49 @@ int	print_line(char *line)
 	return (0);
 }
 
+int	index_after_option(char **tab)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (tab[i][j] != '-')
+			{
+				j++;
+				if (tab[i][j] != 'n')
+					return (i);
+			}
+			else
+				return (i)
+			j++;
+		}
+		i++;
+	}
+	return (i);
+}
+
 int	echo(char **tab, char **env)
 {
 	int	i;
-	int	is_return_line;
+	int	string_index;	
 
 	i = 1;
-	is_return_line = 1;
 	(void)env;
-	if (!ft_strncmp(tab[1], "-n", 3))
-		is_return_line = 0;
-	while (tab[i])
+	string_index = index_after_option(tab);
+	ft_printf("%d\n", string_index);
+	while (tab[string_index])
 	{
 		//if (is_double_quote(tab[i]))
 		print_line(tab[i]);	
 		ft_putchar_fd(' ', 1);
 		i++;
 	}
-	if (is_return_line)
+	if (string_index > 1)
 		ft_putchar_fd('\n', 1);
 	return (0);
 }

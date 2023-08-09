@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
-/*   Updated: 2023/08/09 09:54:25 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/09 14:09:39 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	**ft_envcpy(char **env)
     vars.envcpy[i] = NULL;
     return (0);
 }
+
 int	ft_get_index(char **env, char *needle)
 {
 	int		i;
