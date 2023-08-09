@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/09 09:51:57 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:43:50 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static void	launch()
 	ft_printf("\t######################################################################\n");
 	ft_printf("\t######################################################################\n\n");
 }
-
-t_vars vars;
 
 int	main(int ac, char **av, char **env)
 {
@@ -63,6 +61,6 @@ int	main(int ac, char **av, char **env)
 			}
 		}
 	}
-	rl_clear_history();
+	clear_history();
 	return (0);
 }
