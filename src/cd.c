@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:19:48 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/03 12:10:00 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/07 14:27:10 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	ft_cd(char **args, char **env)
             ft_printf ("Cannot open root directory with '%s'\n", args[1]);
 	else
 	{
-	//struct dirent *pDirent;
+	//	struct dirent *pDirent;
         DIR *pDir;
 
         pDir = opendir (args[1]);

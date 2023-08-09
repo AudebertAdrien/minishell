@@ -17,70 +17,6 @@ char	is_home_or_root(char *pwd_line, char *user_line)
 	return (0);
 }
 
-int	ft_get_index(char **env, char *needle)
-{
-	int		i;
-	int		j;
-	int		len;
-	char		*haystack;
-
-	i = 0;
-	len = ft_strlen(needle);
-	env[i] = (char *)malloc(sizeof(char) * (len + 1));
-	while (env[i])
-	{
-		haystack = env[i];
-		j = 0;
-		while (needle[j] && (haystack[j] == needle[j]) && j < len)
-			j++;
-		if (needle[j] == '\0')
-			return (i);
-		i++;
-	}
-	return (0);
-}
-
-char	*ft_get_env(char **env, char *needle)
-{
-	char		*haystack;
-	int		i;
-	int		j;
-	int		len;
-
-	i = 0;
-	len = ft_strlen(needle);
-	env[i] = (char *)malloc(sizeof(char) * (len + 1));
-	while (env[i])
-	{
-		haystack = env[i];
-		j = 0;
-		while (needle[j] && (haystack[j] == needle[j]) && j < len)
-			j++;
-		if (needle[j] == '\0')
-			return (env[i]);
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_get_path(char *pwd_line, char *user_line)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (pwd_line[i])
-	{
-		j = 0;
-		while (user_line[j] && (pwd_line[i + j] == user_line[j]))
-			j++;
-		if (user_line[j] == '\0')
-			return (&pwd_line[i + j]);
-		i++;
-	}
-	return (NULL);
-}
-
 char	*grep_workstation(char *session_line)
 {
 	int		i;
@@ -105,6 +41,28 @@ char	*grep_workstation(char *session_line)
 	return (NULL);
 }
 
+char	*ft_get_path(char *pwd_line, char *user_line)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (pwd_line[i])
+	{
+		j = 0;
+		while (user_line[j] && (pwd_line[i + j] == user_line[j]))
+			j++;
+		if (user_line[j] == '\0')
+		{
+			if (pwd_line[i + j] == '\0')
+				return (&pwd_line[i + j]);
+			else
+				return (ft_substr(&pwd_line[i + j], 1, ft_strlen(&pwd_line[i + j])));
+		}
+		i++;
+	}
+	return (NULL);
+}
 
 char	*get_relative_path(char *pwd_line, char *user_line)
 {

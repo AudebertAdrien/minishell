@@ -6,19 +6,11 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:28:31 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/02/14 16:20:53 by aaudeber         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:18:11 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
-	DESCRIPTION
-	The ft_strtrim() function trim the begin and the end of a s1	
-	
-	RETURN VALUE
-	returns a new pointer to the rest of the s1 
-*/
 
 char	*ft_strtrim(char const *s1, char const *set)
 {

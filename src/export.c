@@ -6,70 +6,68 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 09:55:21 by mcreus            #+#    #+#             */
-/*   Updated: 2023/08/04 11:15:05 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:43:25 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static	inline int	getpos(const char *str, const char c)
+static int	len_env(char *str)
 {
-	int	pos;
-
-	pos = ft_strchr(str, c) - str;
-	if (pos == 0)
-		return (ft_strlen((char *)str));
-	return (pos);
-}
-
-static char	**dup_add_table(char **envp, char *add, int pos)
-{
-	char	**new_env;
-	int		i;
+	int	i;
 
 	i = 0;
-	while (envp[i])
-		++i;
-	if (pos == -1)
+	while (str[i] && str[i] != '=')
+		i++;
+	return (i);
+}
+
+char    **ft_envcpy2(char **env, char *str)
+{
+    char    **envcpy2;
+    int     i;
+
+    i = 0;
+    while (env[i])
+        i++;
+    envcpy2 = (char **)malloc(sizeof(char *) * (i + 2));
+    i = 0;
+    while (env[i])
+    {
+        envcpy2[i] = ft_strdup(env[i]);
+        i++;
+    }
+	while (str[i])
 	{
-		if (!dup_add_table_short(&new_env, add, &i, envp))
-			return (0);
+		envcpy2[i] = ft_strdup(str);
+		i++;
+	}
+    envcpy2[i] = NULL;
+    return (envcpy2);
+}
+
+void	export(char **args, char **env)
+{
+	int		args_i;
+	char	*line;
+	char	**new_env;
+
+	if (args[1])
+	{
+		line = ft_substr(args[1], 0, len_env(args[1]));
+		args_i = ft_get_index(env, line);
+		if (args_i == -1)
+		{
+			new_env = ft_envcpy2(env, args[1]);
+			env = new_env;
+		}
+		else
+		{
+			free(env[args_i]);
+			env[args_i] = NULL;
+			env[args_i] = args[1];
+		}
 	}
 	else
-	{
-		if (!dup_table(&new_env, &i, pos, envp))
-			return (0);
-		add_table(&new_env, add, &i, envp);
-	}
-	free(envp);
-	return (new_env);
-}
-
-void	export_pwd(char **envp, char *newpwd)
-{
-	int		pos;
-
-	pos = ft_get_index(envp, newpwd);
-	if (pos != -1)
-	{
-		envp = dup_add_table(envp, newpwd, pos);
-	}
-}
-
-void	export(char **args, char **envp)
-{
-	int		i;
-	int		pos;
-
-	if (envp == 0)
-	if (envp == 0)
-		return ;
-	i = 0;
-	while (args[++i])
-	{
-		pos = ft_get_index(envp, args[i]);
-		envp = dup_add_table(envp, args[i], pos);
-		pos = ft_get_index(envp, args[i]);
-		envp = dup_add_table(envp, args[i], pos);
-	}
+		print_export(env);
 }

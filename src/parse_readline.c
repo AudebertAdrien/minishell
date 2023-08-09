@@ -6,11 +6,31 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/04 12:42:59 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:44:20 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*ft_remove_path_slash(char *str)
+{
+	char	*ptr;
+
+	DIR *pDir;
+
+	pDir = opendir(str);
+	if (pDir)
+	{
+		if (str[ft_strlen(str) - 1] == '/' && ft_strlen(str) > 1)
+		{
+			ptr = ft_substr(str, 0 , ft_strlen(str) - 1);
+			str = NULL;
+			free(str);
+			return (ptr);
+		}
+	}
+	return (str);
+}
 
 int	ft_count_special_words(char *str)
 {
@@ -34,7 +54,6 @@ int	ft_count_special_words(char *str)
 			count++;
 		i++;
 	}
-	printf("count = %d\n", count);
 	return (count);
 }
 
@@ -44,6 +63,7 @@ char	**parse_this_fucking_quote(char *str)
 	int	j;
 	int	k;
 	char	**tab;
+	char	*tmp;
 
 	i = 0;
 	k = 0;
@@ -59,7 +79,8 @@ char	**parse_this_fucking_quote(char *str)
 				j++;
 			/* add a condition when "t""x""t" join everything when double
 			 * quote are side by side */
-			tab[k++] = ft_substr(str, i + 1, j - 1);
+			tmp = ft_substr(str, i + 1, j - 1);
+			tab[k++] = ft_remove_path_slash(tmp);
 			i = i + j;
 		}
 		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' ') && str[i] != '"')
@@ -67,27 +88,20 @@ char	**parse_this_fucking_quote(char *str)
 			j = 0;
 			while (str[i + j] && str[i + j] != ' ')
 				j++;
-			tab[k++] = ft_substr(str, i, j);
+			tmp = ft_substr(str, i, j);
+			tab[k++] = ft_remove_path_slash(tmp);
 		}
-		i++;
-	}
-
-	i = 0;
-	while (tab[i])
-	{
-		printf("=>%s\n", tab[i]);
 		i++;
 	}
 	return (tab);
 }
-
-int	parse_readline(char *str, char **envcpy)
+	
+int	parse_readline(char *str)
 {
 	char	**tab;
 	int	res;
 
-	tab = ft_split(str, ' ');
-	parse_this_fucking_quote(str);	
-	res = find_cmd(str, tab, envcpy);
+	tab = parse_this_fucking_quote(str);	
+	res = find_cmd(tab);
 	return (res);
 }
