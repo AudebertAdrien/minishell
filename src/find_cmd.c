@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/09 10:30:26 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/09 19:56:25 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	find_cmd(char **tab)
 	else if (!strcmp(cmd, "ls"))
 		execve("/bin/ls", tab, vars.envcpy);
 	else if (!strcmp(cmd, "unset"))
-		unset(vars.envcpy, tab);
+		ft_unset(tab);
 	//else if (!strcmp(cmd, "exit"))
 	//	cmd_exit(tab, envcpy);
 	else

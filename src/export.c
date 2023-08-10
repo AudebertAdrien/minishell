@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 09:55:21 by mcreus            #+#    #+#             */
-/*   Updated: 2023/08/09 11:38:48 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/10 18:49:03 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char    **ft_duplicate_env(char **env, char *str)
     i = 0;
     while (env[i])
     {
-        tmp[i] = env[i];
+        tmp[i] = ft_strdup(env[i]);
         i++;
     }
 	tmp[i] = ft_strdup(str);
@@ -60,11 +60,11 @@ void	export(char **args, char **env)
 		}
 		else
 		{
-			free(env[args_i]);
-			env[args_i] = NULL;
-			env[args_i] = args[1];
+			free(vars.envcpy[args_i]);
+			vars.envcpy[args_i] = NULL;
+			vars.envcpy[args_i] = args[1];
 		}
 	}
 	else
-		print_export(env);
+		print_export(vars.envcpy);
 }

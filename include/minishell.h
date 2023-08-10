@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/09 10:29:03 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/10 11:05:13 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <dirent.h>
+# include <string.h>
 
 # include "libft.h"
 # include "ft_printf.h"
@@ -46,12 +47,17 @@ typedef struct s_cmd
 	char	*cmd;
 	char	**args;
 	struct s_cmd	*next;
-	struct s_cmd	*previous;
 }	t_cmd;
 
+typedef struct s_file {
+	char	*file;
+	char	*end_of_file;
+	int		flag;
+}	t_file;
+
 typedef struct s_line {
-	char	*input;
-	char	*output;
+	t_file	in;
+	t_file	out;
 	t_cmd	*cmd;
 	int		loop;
 }	t_line;
@@ -78,5 +84,5 @@ void	export(char **args, char **envp);
 void	print_export(char **envp);
 int    free_tabs(char **env);
 
-void	unset(char **args, char **envp);
+void	ft_unset(char **args);
 #endif
