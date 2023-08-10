@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:17:51 by mcreus            #+#    #+#             */
-/*   Updated: 2023/08/10 11:24:39 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/10 15:18:20 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	ft_unset(char **args)
 
 	if (!args[1])
 	{
-		ft_putstr_fd("unset: not enough arguments\n", 2);
+		ft_putstr_fd("unset: you need put an argument\n", 2);
 		return ;
 	}
 	while (vars.envcpy[i])
 		i++;
-	new_env = calloc(sizeof(char *), i);
+	new_env = malloc(sizeof(char *) * i + 1);
 	i = 0;
 	while (vars.envcpy[i])
 	{
@@ -49,6 +49,6 @@ void	ft_unset(char **args)
 		}
 		i++;
 	}
-	free_tabs(vars.envcpy);
+	free(vars.envcpy);
 	vars.envcpy = new_env;
 }
