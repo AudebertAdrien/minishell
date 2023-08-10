@@ -6,23 +6,11 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/09 16:56:34 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/10 18:36:47 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-int	is_double_quote(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	if (str[0] == '"' && str[len - 1] == '"')
-		return (1);
-	return (0);
-}
-*/
 
 int	print_line(char *line)
 {
@@ -67,21 +55,18 @@ int	index_after_option(char **tab)
 	while (tab[i])
 	{
 		j = 0;
-		while (tab[i][j])
+		if (tab[i][j++] == '-')
 		{
-			if (tab[i][j] != '-')
-			{
+			while (tab[i][j] == 'n')
 				j++;
-				if (tab[i][j] != 'n')
-					return (i);
-			}
-			else
+			if (tab[i][j] && tab[i][j] != 'n')
 				return (i);
-			j++;
 		}
+		else
+			return (i);
 		i++;
 	}
-	return (i);
+	return (0);
 }
 
 int	echo(char **tab, char **env)
@@ -92,15 +77,16 @@ int	echo(char **tab, char **env)
 	i = 1;
 	(void)env;
 	string_index = index_after_option(tab);
-	ft_printf("%d\n", string_index);
-	while (tab[string_index])
+	while (tab[i])
 	{
-		//if (is_double_quote(tab[i]))
-		print_line(tab[i]);	
-		ft_putchar_fd(' ', 1);
+		if (i >= string_index)
+		{
+			print_line(tab[i]);	
+			ft_putchar_fd(' ', 1);
+		}
 		i++;
 	}
-	if (string_index > 1)
+	if (string_index == 1)
 		ft_putchar_fd('\n', 1);
 	return (0);
 }
