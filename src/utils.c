@@ -6,11 +6,34 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
-/*   Updated: 2023/08/09 14:09:39 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/11 18:35:03 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_print_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	ft_printf("|\t");
+	ft_printf("\t");
+	while (tab[i])
+	{
+		ft_printf("[%s] ", tab[i]);
+		i++;	
+	}
+	ft_printf("\n");
+}
+
+void	stats(t_vars *vars)
+{
+	ft_printf("\n -----------------------------------------------------------------------\n");
+	ft_print_tab(vars->cmd);
+	ft_print_tab(vars->file_in);
+	ft_printf("\n -----------------------------------------------------------------------\n\n");
+}
 
 int	ft_cmp_char(char c, char *str)
 {

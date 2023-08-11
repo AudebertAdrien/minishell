@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/09 16:44:20 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/11 18:34:16 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,62 @@ char	**parse_this_fucking_quote(char *str)
 	}
 	return (tab);
 }
-	
+
+void	assign_vars(char **tab)
+{
+	int	i;
+	int	j;
+	int	c;
+	int	f;
+	int	count_cmds;
+	int	count_files;
+
+	i = 0;
+	j = 0;
+	c = 0;
+	f = 0;
+	count_cmds = 0;
+	count_files = 0;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (i == 0 && j == 0)
+				count_cmds++;
+			if (tab[i][j] == '|' && tab[i + 1])
+				count_cmds++;
+			if (ft_strnstr(&tab[i][j], ">>", 2) && tab[i + 1])
+				count_files++;
+			j++;
+		}
+		i++;
+	}
+	vars.cmd = malloc((sizeof(char *) * count_cmds) + 1);
+	vars.file_in = malloc((sizeof(char *) * count_files) + 1);
+	i = 0;
+	while (tab[i])
+	{
+		if (i == 0)
+			vars.cmd[c++] = tab[i];
+		if (tab[i][0] == '|' && tab[i + 1])
+			vars.cmd[c++] = tab[i + 1];
+		if (ft_strnstr(&tab[i][j], ">>", 2) && tab[i + 1])
+			vars.file_in[f++] = tab[i + 1];
+		i++;
+	}
+	vars.cmd[c] = NULL;
+	vars.file_in[f] = NULL;
+}
+
 int	parse_readline(char *str)
 {
 	char	**tab;
 	int	res;
 
 	tab = parse_this_fucking_quote(str);	
+	assign_vars(tab);
+	stats(&vars);
 	res = find_cmd(tab);
 	return (res);
 }
