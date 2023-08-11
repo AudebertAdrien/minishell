@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/10 18:36:47 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/11 16:54:37 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int	print_line(char *line)
 			j = 1;
 			while (line[i + j] && (line[i + j] != ' ' && line[i + j] != '"'))
 				j++;
-			if (line[i + j] == '"')
-				j--;
-			str = ft_substr(line, i + 1, j);
+			str = ft_substr(line, i + 1, j - 1);
 			if (getenv(str))
 			{
 				ft_printf("%s", getenv(str));
@@ -39,8 +37,8 @@ int	print_line(char *line)
 		{
 			if (!(line[i] == '"'))
 				ft_putchar_fd(line[i], 1);
+			i++;
 		}
-		i++;
 	}
 
 	return (0);
