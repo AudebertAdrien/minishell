@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
-/*   Updated: 2023/08/11 18:35:03 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/14 13:31:15 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,48 @@ void	ft_print_tab(char **tab)
 	int	i;
 
 	i = 0;
-	ft_printf("|\t");
-	ft_printf("\t");
 	while (tab[i])
 	{
-		ft_printf("[%s] ", tab[i]);
+		ft_printf("\t[%s] ", tab[i]);
 		i++;	
 	}
-	ft_printf("\n");
 }
 
 void	stats(t_vars *vars)
 {
 	ft_printf("\n -----------------------------------------------------------------------\n");
-	ft_print_tab(vars->cmd);
-	ft_print_tab(vars->file_in);
+	if (*vars->cmd)
+	{
+		ft_printf("|\tcmd :");
+		ft_printf("\t");
+		ft_print_tab(vars->cmd);
+		ft_printf("\n");
+	}
+	if (*vars->file_in)
+	{
+		ft_printf("|\tfile_in :");
+		ft_print_tab(vars->file_in);
+		ft_printf("\n");
+	}
+	if (*vars->file_out)
+	{
+		ft_printf("|\tfile_out :");
+		ft_print_tab(vars->file_out);
+		ft_printf("\n");
+	}
+	if (*vars->type_in)
+	{
+		ft_printf("|\ttype_int :");
+		ft_print_tab(vars->type_in);
+		ft_printf("\n");
+	}
+	if (*vars->type_out)
+	{
+		ft_printf("|\ttype_out :");
+		ft_print_tab(vars->type_out);
+		ft_printf("\n");
+	}
+
 	ft_printf("\n -----------------------------------------------------------------------\n\n");
 }
 

@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/11 18:34:16 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/14 14:27:06 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,60 +96,96 @@ char	**parse_this_fucking_quote(char *str)
 	return (tab);
 }
 
-void	assign_vars(char **tab)
+
+int	count_el(char **tab)
 {
 	int	i;
-	int	j;
-	int	c;
-	int	f;
-	int	count_cmds;
-	int	count_files;
+	int	ct_cmd;
+	int	ct_type_in;
+	int	ct_type_out;
+	int	ct_file_in;
+	int	ct_file_out;
 
 	i = 0;
-	j = 0;
-	c = 0;
-	f = 0;
-	count_cmds = 0;
-	count_files = 0;
+	ct_cmd = 0;
+	ct_type_in = 0;
+	ct_type_out = 0;
+	ct_file_in = 0;
+	ct_file_out = 0;
 	while (tab[i])
 	{
-		j = 0;
-		while (tab[i][j])
-		{
-			if (i == 0 && j == 0)
-				count_cmds++;
-			if (tab[i][j] == '|' && tab[i + 1])
-				count_cmds++;
-			if (ft_strnstr(&tab[i][j], ">>", 2) && tab[i + 1])
-				count_files++;
-			j++;
-		}
+		if (tab[i] && ((!ft_strncmp(tab[i], "|", 2) && tab[i + 1]) || i == 0 ))
+			ct_cmd++;
+		if (tab[i] && !ft_strncmp(tab[i], "<<", 2) && tab[i - 1])
+			ct_file_in++;
+		if (tab[i] && !ft_strncmp(tab[i], ">>", 2) && tab[i + 1])
+			ct_file_out++;
+		if (tab[i] && !ft_strncmp(tab[i], "<", 1))
+			ct_type_in++;
+		if (tab[i] && !ft_strncmp(tab[i], "<<", 2))
+			ct_type_in++;
+		if (tab[i] && !ft_strncmp(tab[i], ">>", 2))
+			ct_type_out++;
+		if (tab[i] && !ft_strncmp(tab[i], ">", 1))
+			ct_type_out++;
 		i++;
 	}
-	vars.cmd = malloc((sizeof(char *) * count_cmds) + 1);
-	vars.file_in = malloc((sizeof(char *) * count_files) + 1);
-	i = 0;
-	while (tab[i])
-	{
-		if (i == 0)
-			vars.cmd[c++] = tab[i];
-		if (tab[i][0] == '|' && tab[i + 1])
-			vars.cmd[c++] = tab[i + 1];
-		if (ft_strnstr(&tab[i][j], ">>", 2) && tab[i + 1])
-			vars.file_in[f++] = tab[i + 1];
-		i++;
-	}
-	vars.cmd[c] = NULL;
-	vars.file_in[f] = NULL;
+	vars.cmd = malloc((sizeof(char *) * ct_cmd + 1));
+	vars.file_in = malloc((sizeof(char *) * ct_file_in + 1));
+	vars.file_out = malloc((sizeof(char *) *  ct_file_out  + 1));
+	vars.type_in = malloc((sizeof(char *) * ct_type_in + 1));
+	vars.type_out = malloc((sizeof(char *) *  ct_type_out + 1));
+
+	vars.cmd[ct_cmd] = NULL;
+	vars.cmd[ct_file_in] = NULL;
+	vars.cmd[ct_file_out] = NULL;
+	vars.cmd[ct_type_in] = NULL;
+	vars.cmd[ct_type_out] = NULL;
+
+	return (0);	
 }
 
+int	assign_el(char **tab)
+{
+	int	i;
+	int	ct_cmd;
+	int	ct_type_in;
+	int	ct_type_out;
+	int	ct_file_in;
+	int	ct_file_out;
+
+	i = 0;
+	ct_cmd = 0;
+	ct_type_in = 0;
+	ct_type_out = 0;
+	ct_file_in = 0;
+	ct_file_out = 0;
+	while (tab[i])
+	{
+		if (tab[i] && i == 0)
+			vars.cmd[ct_cmd++] = tab[i];
+		if (tab[i] && (!ft_strncmp(tab[i], "|", 1) && tab[i + 1]))
+			vars.cmd[ct_cmd++] = tab[i + 1];
+		if (tab[i] && !ft_strncmp(tab[i], "<<", 2) && tab[i + 1])
+			vars.file_in[ct_file_in++] = tab[i - 1];
+		if (tab[i] && !ft_strncmp(tab[i], ">>", 2) && tab[i + 1])
+			vars.file_out[ct_file_out++] = tab[i + 1];
+		if (tab[i] && !ft_strncmp(tab[i], "<", 1))
+			vars.type_in[ct_type_in++] = tab[i];
+		if (tab[i] && !ft_strncmp(tab[i], ">", 1))
+			vars.type_out[ct_type_out++] = tab[i];
+		i++;
+	}
+	return (0);	
+}
 int	parse_readline(char *str)
 {
 	char	**tab;
 	int	res;
 
 	tab = parse_this_fucking_quote(str);	
-	assign_vars(tab);
+	count_el(tab);
+	assign_el(tab);
 	stats(&vars);
 	res = find_cmd(tab);
 	return (res);
