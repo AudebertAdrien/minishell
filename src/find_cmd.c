@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:44:53 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/09 19:56:25 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/14 16:46:38 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int	find_cmd(char **tab)
 		execve("/bin/ls", tab, vars.envcpy);
 	else if (!strcmp(cmd, "unset"))
 		ft_unset(tab);
-	//else if (!strcmp(cmd, "exit"))
-	//	cmd_exit(tab, envcpy);
 	else
 	{
 		printf("minishell: command not found : %s\n", cmd);

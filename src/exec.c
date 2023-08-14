@@ -6,9 +6,13 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 11:28:55 by mcreus            #+#    #+#             */
-/*   Updated: 2023/07/28 13:55:48 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/08/14 17:41:36 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	exec()
+{
+	return (0);
+}
