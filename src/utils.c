@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
-/*   Updated: 2023/08/14 13:31:15 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/14 14:48:57 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	stats(t_vars *vars)
 	}
 	if (*vars->type_in)
 	{
-		ft_printf("|\ttype_int :");
+		ft_printf("|\ttype_in :");
 		ft_print_tab(vars->type_in);
 		ft_printf("\n");
 	}

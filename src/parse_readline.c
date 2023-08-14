@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/14 14:27:06 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/14 15:32:10 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,19 +114,19 @@ int	count_el(char **tab)
 	ct_file_out = 0;
 	while (tab[i])
 	{
-		if (tab[i] && ((!ft_strncmp(tab[i], "|", 2) && tab[i + 1]) || i == 0 ))
+		if ((!ft_strncmp(tab[i], "|", 2) && tab[i + 1]) || i == 0)
 			ct_cmd++;
-		if (tab[i] && !ft_strncmp(tab[i], "<<", 2) && tab[i - 1])
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], "<<", 2) && tab[i - 1])
 			ct_file_in++;
-		if (tab[i] && !ft_strncmp(tab[i], ">>", 2) && tab[i + 1])
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], ">>", 2) && tab[i + 1])
 			ct_file_out++;
-		if (tab[i] && !ft_strncmp(tab[i], "<", 1))
+		if (ft_strlen(tab[i]) == 1 && !ft_strncmp(tab[i], "<", 1))
 			ct_type_in++;
-		if (tab[i] && !ft_strncmp(tab[i], "<<", 2))
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], "<<", 2))
 			ct_type_in++;
-		if (tab[i] && !ft_strncmp(tab[i], ">>", 2))
+		if (ft_strlen(tab[i]) == 1 && !ft_strncmp(tab[i], ">", 1))
 			ct_type_out++;
-		if (tab[i] && !ft_strncmp(tab[i], ">", 1))
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], ">>", 2))
 			ct_type_out++;
 		i++;
 	}
@@ -162,17 +162,21 @@ int	assign_el(char **tab)
 	ct_file_out = 0;
 	while (tab[i])
 	{
-		if (tab[i] && i == 0)
+		if (i == 0)
 			vars.cmd[ct_cmd++] = tab[i];
-		if (tab[i] && (!ft_strncmp(tab[i], "|", 1) && tab[i + 1]))
+		if ((!ft_strncmp(tab[i], "|", 1) && tab[i + 1]))
 			vars.cmd[ct_cmd++] = tab[i + 1];
-		if (tab[i] && !ft_strncmp(tab[i], "<<", 2) && tab[i + 1])
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], "<<", 2) && tab[i + 1])
 			vars.file_in[ct_file_in++] = tab[i - 1];
-		if (tab[i] && !ft_strncmp(tab[i], ">>", 2) && tab[i + 1])
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], ">>", 2) && tab[i + 1])
 			vars.file_out[ct_file_out++] = tab[i + 1];
-		if (tab[i] && !ft_strncmp(tab[i], "<", 1))
+		if (ft_strlen(tab[i]) == 1 && !ft_strncmp(tab[i], "<", 1))
 			vars.type_in[ct_type_in++] = tab[i];
-		if (tab[i] && !ft_strncmp(tab[i], ">", 1))
+		if (ft_strlen(tab[i]) == 1&& !ft_strncmp(tab[i], ">", 1))
+			vars.type_out[ct_type_out++] = tab[i];
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], "<<", 1))
+			vars.type_in[ct_type_in++] = tab[i];
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], ">>", 1))
 			vars.type_out[ct_type_out++] = tab[i];
 		i++;
 	}
