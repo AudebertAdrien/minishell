@@ -1,0 +1,9 @@
+total 96
+ 4 -rw-rw-r-- 1 motoko motoko  1109 Aug 15 16:19 Makefile
+ 4 drwxrwxr-x 2 motoko motoko  4096 Aug 15 19:00 include
+ 4 drwxrwxr-x 2 motoko motoko  4096 Aug 14 15:34 libft
+72 -rwxrwxr-x 1 motoko motoko 69816 Aug 16 16:06 minishell
+ 4 drwxrwxr-x 2 motoko motoko  4096 Aug 16 16:06 obj
+ 0 -rwx------ 1 motoko motoko     0 Aug 16 16:06 output.txt
+ 4 drwxrwxr-x 2 motoko motoko  4096 Aug  9 10:32 printf
+ 4 drwxrwxr-x 2 motoko motoko  4096 Aug 16 16:06 src

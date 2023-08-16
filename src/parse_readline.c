@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/14 16:35:06 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/16 16:06:01 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,9 @@ int	count_el(char **tab)
 	ct_file_out = 0;
 	while (tab[i])
 	{
-		if (ft_strlen(tab[i]) == 1 && ((!ft_strncmp(tab[i], "|", 2) && tab[i + 1]) || i == 0))
+		if (i == 0)
+			ct_cmd++;
+		if (ft_strlen(tab[i]) && (!ft_strncmp(tab[i], "|", 1) && tab[i + 1]))
 			ct_cmd++;
 
 		if (ft_strlen(tab[i]) == 1 && !ft_strncmp(tab[i], "<", 1) && tab[i - 1])
@@ -186,14 +188,15 @@ int	assign_el(char **tab)
 			vars.type_in[ct_type_in++] = tab[i];
 		if (ft_strlen(tab[i]) == 1&& !ft_strncmp(tab[i], ">", 1))
 			vars.type_out[ct_type_out++] = tab[i];
-		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], "<<", 1))
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], "<<", 2))
 			vars.type_in[ct_type_in++] = tab[i];
-		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], ">>", 1))
+		if (ft_strlen(tab[i]) == 2 && !ft_strncmp(tab[i], ">>", 2))
 			vars.type_out[ct_type_out++] = tab[i];
 		i++;
 	}
 	return (0);	
 }
+
 int	parse_readline(char *str)
 {
 	char	**tab;
@@ -203,6 +206,7 @@ int	parse_readline(char *str)
 	count_el(tab);
 	assign_el(tab);
 	stats(&vars);
+	redirection();
 	res = find_cmd(tab);
 	return (res);
 }

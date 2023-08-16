@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/11 17:29:53 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/16 17:28:41 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@
 # include <errno.h>
 # include <dirent.h>
 # include <string.h>
+# include <fcntl.h>
 
-# include "libft.h"
-# include "ft_printf.h"
+//# include "libft.h"
+//# include "ft_printf.h"
 
 typedef struct s_vars
 {
@@ -62,6 +63,7 @@ int	ft_pwd(char **args);
 int	ft_get_index(char **env, char *needle);
 int	ft_cmp_char(char c, char *str);
 int	free_tabs(char **env);
+int	redirection(void);
 
 void	ft_env(char **env);
 void	export(char **args, char **envp);
