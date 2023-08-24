@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:13:19 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/11 17:37:40 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/23 15:14:57 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ static void	launch()
 
 int	main(int ac, char **av, char **env)
 {
-	pid_t		process;
-	pid_t		wait();
 	char		*line;
 	static char	*str;
 
@@ -52,16 +50,8 @@ int	main(int ac, char **av, char **env)
 		line = display_prompt(vars.envcpy);
 		str = readline(line);	
 		add_history(str);
-		process = fork();
 		if (str)
-		{
-			if (process > 0)
-				wait(NULL);
-			if (process == 0)
-			{
-				parse_readline(str);
-			}
-		}
+			parse_readline(str);
 	}
 	rl_clear_history();
 	return (0);

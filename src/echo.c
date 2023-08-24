@@ -6,7 +6,7 @@
 /*   By: aaudeber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:13 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/11 16:54:37 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/22 11:56:35 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	echo(char **tab, char **env)
 		}
 		i++;
 	}
-	if (string_index == 1)
+	if (string_index > 1)
 		ft_putchar_fd('\n', 1);
 	return (0);
 }

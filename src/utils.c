@@ -6,11 +6,23 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:51:50 by motoko            #+#    #+#             */
-/*   Updated: 2023/08/16 15:57:28 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/24 13:40:42 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+void	ft_add_el_to_tab(char **tab, char *s)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+			i++;
+	tab[i] = s;
+}
+*/
 
 void	ft_print_tab(char **tab)
 {
@@ -22,6 +34,16 @@ void	ft_print_tab(char **tab)
 		ft_printf("\t[%s] ", tab[i]);
 		i++;	
 	}
+}
+
+int	ft_len_tab(char **tab)
+{
+	int	i;
+	
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
 }
 
 void	stats(t_vars *vars)

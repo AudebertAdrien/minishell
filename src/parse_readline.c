@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:23:46 by aaudeber          #+#    #+#             */
-/*   Updated: 2023/08/16 16:06:01 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/24 13:41:30 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_remove_path_slash(char *str)
 	return (str);
 }
 
-int	ft_count_special_words(char *str)
+int	ft_count_words(char *str)
 {
 	int	i;
 	int	j;
@@ -67,7 +67,7 @@ char	**parse_this_fucking_quote(char *str)
 
 	i = 0;
 	k = 0;
-	tab = (char **)ft_calloc((ft_count_special_words(str) + 1), sizeof(char *));
+	tab = (char **)ft_calloc((ft_count_words(str) + 1), sizeof(char *));
 	if (!tab)
 		return (NULL);
 	while (str[i])
@@ -77,8 +77,6 @@ char	**parse_this_fucking_quote(char *str)
 			j = 1;
 			while (str[i + j] != '"')
 				j++;
-			/* add a condition when "t""x""t" join everything when double
-			 * quote are side by side */
 			tmp = ft_substr(str, i + 1, j - 1);
 			tab[k++] = ft_remove_path_slash(tmp);
 			i = i + j;
@@ -138,11 +136,11 @@ int	count_el(char **tab)
 			ct_type_out++;
 		i++;
 	}
-	vars.cmd = malloc((sizeof(char *) * ct_cmd + 1));
-	vars.file_in = malloc((sizeof(char *) * ct_file_in + 1));
-	vars.file_out = malloc((sizeof(char *) *  ct_file_out  + 1));
-	vars.type_in = malloc((sizeof(char *) * ct_type_in + 1));
-	vars.type_out = malloc((sizeof(char *) *  ct_type_out + 1));
+	vars.cmd = malloc(sizeof(char *) * ct_cmd + 1);
+	vars.file_in = malloc(sizeof(char *) * ct_file_in + 1);
+	vars.file_out = malloc(sizeof(char *) * ct_file_out  + 1);
+	vars.type_in = malloc(sizeof(char *) * ct_type_in + 1);
+	vars.type_out = malloc(sizeof(char *) * ct_type_out + 1);
 
 	vars.cmd[ct_cmd] = NULL;
 	vars.cmd[ct_file_in] = NULL;
@@ -197,16 +195,63 @@ int	assign_el(char **tab)
 	return (0);	
 }
 
+int	ft_create_lst(char **tab, t_list **lst)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	l;
+	t_list	*new;
+
+	i = 0;
+	l = 0;
+	lst = NULL;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i + j] && ft_strncmp(tab[i + j], "|", 1)) 
+			j++;
+		k = 0;
+		new = ft_lstnew();
+		new->cmd[0] = tab[k++];
+		while (k < j)
+		{
+			new->args[l++] = tab[k++];
+		}
+		ft_lstadd_back(lst, new);
+		i += j + 1;
+	}
+	return (0);
+}
+
 int	parse_readline(char *str)
 {
 	char	**tab;
-	int	res;
+	pid_t	process;
+	pid_t	wait();
+	int	i;
+	//int	len_tab;
+	t_list	*lst;
 
+	i = 0;
 	tab = parse_this_fucking_quote(str);	
 	count_el(tab);
 	assign_el(tab);
 	stats(&vars);
-	redirection();
-	res = find_cmd(tab);
-	return (res);
+
+	//process = fork();
+	//len_tab = ft_len_tab(vars.cmd);
+	ft_create_lst(tab, &lst);
+	/*
+	while (i < len_tab)
+	{
+		if (process > 0)
+			wait(NULL);
+		if (process == 0)
+			find_cmd(tab);
+		i++;
+	}
+	*/
+	//redirection();
+	return (0);
 }
