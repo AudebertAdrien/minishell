@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 09:56:49 by mcreus & aa       #+#    #+#             */
-/*   Updated: 2023/08/16 17:28:41 by motoko           ###   ########.fr       */
+/*   Updated: 2023/08/24 17:26:43 by motoko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@
 # include <dirent.h>
 # include <string.h>
 # include <fcntl.h>
+# include <stddef.h>
 
-//# include "libft.h"
-//# include "ft_printf.h"
+# include "libft.h"
+# include "ft_printf.h"
 
 typedef struct s_vars
 {
@@ -45,6 +46,17 @@ typedef struct s_vars
 	char	**type_out;
 }	t_vars;
 
+typedef struct s_list
+{
+	char	**cmd;
+	char	**args;
+	char	**file_in;
+	char	**file_out;
+	char	**type_in;
+	char	**type_out;
+	struct	s_list *next;
+}		t_list;
+
 extern t_vars vars;
 
 char	*display_prompt(char **env);
@@ -54,6 +66,7 @@ char	*grep_workstation(char *session_line);
 char	*get_relative_path(char *pwd, char *user);
 char	*free_and_join(char *s1, char *s2);
 
+int	ft_len_tab(char **tab);
 int	**ft_envcpy(char **env);
 int	parse_readline(char *str);
 int	find_cmd(char **tab);
@@ -65,9 +78,14 @@ int	ft_cmp_char(char c, char *str);
 int	free_tabs(char **env);
 int	redirection(void);
 
+t_list	*ft_lstnew();
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+
+void	ft_add_el_to_tab(char **tab, char *s);
 void	ft_env(char **env);
 void	export(char **args, char **envp);
 void	print_export(char **envp);
 void	ft_unset(char **args);
-void	stats(t_vars *vars);
+void	stats(t_list **lst);
 #endif

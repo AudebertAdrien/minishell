@@ -7,18 +7,19 @@ VPATH		= src
 
 SRCS		= main.c \
 		  display_prompt.c \
-		  parse_readline.c \
 		  find_cmd.c \
 		  echo.c \
 		  cd.c \
 		  pwd.c \
 		  env.c \
-		  utils.c \
 		  exit.c \
 		  export.c \
 		  export_no_args.c \
 		  unset.c \
 		  redirection.c \
+		  parse_readline.c \
+		  utils.c \
+		  utils_lst.c \
 
 INC		= -I./include -I./libft -I./printf
 LIBFT		= -Llibft -lft 
@@ -28,7 +29,7 @@ OBJ_DIR		= obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 $(OBJ_DIR)/%.o: %.c
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) $(LIBFT) $(PRINTF) -c $< -o $@
 
 all: create_obj_dir $(MAIN) 
 
